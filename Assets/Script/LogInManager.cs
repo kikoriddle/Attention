@@ -13,23 +13,38 @@ public class LogInManager : MonoBehaviour
     public GameObject loginPanel;
 
     public string Password;
+    private const string INITIAL_PASSWORD = "fair41wEd";
+    public bool resetPass = false;
 
     //call security panel
-
+    public GameObject securityPanel;
     // Start is called before the first frame update
     void Start()
     {
         errorText.gameObject.SetActive(false);
+        securityPanel.SetActive(false);
 
         loginButton.onClick.AddListener(HandleLogin);
         forgotPasswordButton.onClick.AddListener(() => {
             loginPanel.SetActive(false);
+            securityPanel.SetActive(true);
            // securityController.ShowSecurityQuestions();
         });
 
         //add input validation
         usernameInput.onValueChanged.AddListener(ValidateInput);
         passwordInput.onValueChanged.AddListener(ValidateInput);
+        if (resetPass)
+        { 
+            //player has reset the password
+
+        }
+        else 
+        {
+            //noReset
+            Debug.Log("Get new pass");
+            Password = INITIAL_PASSWORD;
+        }
     }
 
     private void ValidateInput(string _)
@@ -68,5 +83,13 @@ public class LogInManager : MonoBehaviour
     {
         // if dont match then goes to reset
         return user_name == "itsnotyuki" && user_pass == Password;  
+    }
+
+    private void OnDestroy()
+    {
+        // Clean up listeners
+        loginButton.onClick.RemoveAllListeners();
+        usernameInput.onValueChanged.RemoveAllListeners();
+        passwordInput.onValueChanged.RemoveAllListeners();
     }
 }
