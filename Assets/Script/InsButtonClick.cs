@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class ActivateGameObject : MonoBehaviour
 {
@@ -8,6 +9,12 @@ public class ActivateGameObject : MonoBehaviour
     public GameObject alexPage; // Assign the GameObject to be activated in the Inspector
     public GameObject youPage;
     public GameObject ericPage;
+    public string scene; 
+
+    void Start()
+    {
+        scene = "01 Main Window";
+    }
 
     public void ActivateAlexPage()
     {
@@ -57,5 +64,19 @@ public class ActivateGameObject : MonoBehaviour
         if (youPage != null) youPage.SetActive(false);
         if (ericPage != null) ericPage.SetActive(false);
     }
-}
+
+    public void switchScene()
+    {
+        if (!string.IsNullOrEmpty(scene))
+        {
+            Debug.Log($"Switching to scene: {scene}");
+            SceneManager.LoadScene(scene); // Load the specified scene
+        }
+        else
+        {
+            Debug.LogError("Target scene name is not assigned or empty!");
+        }
+    }
+    }
+
 

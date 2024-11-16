@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Ins.unity
     guid: 6dd12252d7f73dd4c82c24eec384f124
+  - enabled: 1
+    path: Assets/Scenes/Message.unity
+    guid: 41ce5370ea5a9294c99f43f7a2421769
   m_configObjects: {}

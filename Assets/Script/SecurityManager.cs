@@ -50,9 +50,9 @@ public class SecurityManager : MonoBehaviour
         {
             securityQuestionsPanel.SetActive(false);
             NewPasswordPanel.SetActive(true);
-            //newPasswordController.ShowNewPasswordPanel();
-            ResetDropdowns();
-        }
+//newPasswordController.ShowNewPasswordPanel();
+             ResetDropdowns();
+         }
         else
         {
             ShowError("One or more answers are incorrect");
