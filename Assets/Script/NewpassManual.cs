@@ -9,6 +9,9 @@ public class NewpassManual : MonoBehaviour
     public Button submitButton;
     public TextMeshProUGUI errorMessageText;
     public GameObject passwordResetPanel;
+    public GameObject LoginManual;
+
+    public LogInManager LM;
 
     [Header("Password Requirements")]
     private const int MIN_LENGTH = 8;
@@ -117,12 +120,16 @@ public class NewpassManual : MonoBehaviour
             return;
         }
 
-        // Successfully set new password
-        //loginManager.OnPasswordReset(newPassword);
 
-        // Clear and hide this panel
+        // set new password
+        LM.resetPass = true;
+        LM.Password = newPassword;
+        Debug.Log($"Password updated to: {LM.Password}");
+
+        //clear input and swtich
         ClearInputs();
         passwordResetPanel.SetActive(false);
+        LoginManual.SetActive(true);
     }
 
     //show error

@@ -18,11 +18,13 @@ public class LogInManager : MonoBehaviour
 
     //call security panel
     public GameObject securityPanel;
+    public GameObject newPassPanel;
     // Start is called before the first frame update
     void Start()
     {
         errorText.gameObject.SetActive(false);
         securityPanel.SetActive(false);
+        newPassPanel.SetActive(false);
 
         loginButton.onClick.AddListener(HandleLogin);
         forgotPasswordButton.onClick.AddListener(() => {
@@ -37,7 +39,7 @@ public class LogInManager : MonoBehaviour
         if (resetPass)
         { 
             //player has reset the password
-
+            Debug.Log(resetPass);
         }
         else 
         {
