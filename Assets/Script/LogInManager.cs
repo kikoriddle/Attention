@@ -47,6 +47,8 @@ public class LogInManager : MonoBehaviour
             Debug.Log("Get new pass");
             Password = INITIAL_PASSWORD;
         }
+
+        
     }
 
     private void ValidateInput(string _)
