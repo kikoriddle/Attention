@@ -15,9 +15,15 @@ EditorBuildSettings:
     path: Assets/Scenes/01 Main Window.unity
     guid: 31d9212651f8fc24b9c1d6a0a255638f
   - enabled: 1
-    path: Assets/Scenes/Ins.unity
+    path: Assets/Scenes/04 INS.unity
     guid: 6dd12252d7f73dd4c82c24eec384f124
   - enabled: 1
     path: Assets/Scenes/Message.unity
     guid: 41ce5370ea5a9294c99f43f7a2421769
+  - enabled: 1
+    path: Assets/Scenes/02 LogIn.unity
+    guid: d8db7f3e47700174e8c2e34b8d3a6e2d
+  - enabled: 1
+    path: Assets/Scenes/03 Captcha.unity
+    guid: 03239db390ce7ad40aa54f43f664e158
   m_configObjects: {}
