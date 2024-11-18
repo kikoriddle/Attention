@@ -1,82 +1,95 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
-
 public class ActivateGameObject : MonoBehaviour
 {
+    public GameObject alexMessage; // Assign Alex's message in the Inspector
+    public GameObject alexChatBox; // Assign Alex's chat box in the Inspector
+    public GameObject ericMessage; // Assign Eric's message in the Inspector
+    public GameObject ericChatBox; // Assign Eric's chat box in the Inspector
 
-    public GameObject alexPage; // Assign the GameObject to be activated in the Inspector
-    public GameObject youPage;
-    public GameObject ericPage;
-    public string scene; 
+    public Button alexButton; // Assign Alex's button in the Inspector
+    public Button ericButton; // Assign Eric's button in the Inspector
+
+    public RectTransform alexButtonPosition; // Reference to Alex's button position
+    public RectTransform ericButtonPosition; // Reference to Eric's button position
+    public string sceneName;
 
     void Start()
     {
-        scene = "01 Main Window";
+        sceneName = "01 Main Window";
+        ResetButtonPositions();
     }
 
     public void ActivateAlexPage()
     {
         DeactivateAllPages(); // Turn off all pages first
-        if (alexPage != null)
-        {
-            alexPage.SetActive(true); // Activate Alex's page
-            Debug.Log($"{alexPage.name} has been activated!");
-        }
-        else
-        {
-            Debug.LogError("No object assigned to activate for Alex's page!");
-        }
-    }
 
-    public void ActivateYourPage()
-    {
-        DeactivateAllPages(); // Turn off all pages first
-        if (youPage != null)
-        {
-            youPage.SetActive(true); // Activate Your page
-            Debug.Log($"{youPage.name} has been activated!");
-        }
-        else
-        {
-            Debug.LogError("No object assigned to activate for Your page!");
-        }
+        // Activate Alex's message and chat box
+        if (alexMessage != null) alexMessage.SetActive(true);
+        if (alexChatBox != null) alexChatBox.SetActive(true);
+
+        // Switch button positions
+        SwitchButtonPositions(alexButtonPosition, ericButtonPosition);
+
+        Debug.Log("Alex's page has been activated!");
     }
 
     public void ActivateEricPage()
     {
         DeactivateAllPages(); // Turn off all pages first
-        if (ericPage != null)
-        {
-            ericPage.SetActive(true); // Activate Eric's page
-            Debug.Log($"{ericPage.name} has been activated!");
-        }
-        else
-        {
-            Debug.LogError("No object assigned to activate for Eric's page!");
-        }
+
+        // Activate Eric's message and chat box
+        if (ericMessage != null) ericMessage.SetActive(true);
+        if (ericChatBox != null) ericChatBox.SetActive(true);
+
+        // Switch button positions
+        SwitchButtonPositions(ericButtonPosition, alexButtonPosition);
+
+        Debug.Log("Eric's page has been activated!");
     }
 
     private void DeactivateAllPages()
     {
-        if (alexPage != null) alexPage.SetActive(false);
-        if (youPage != null) youPage.SetActive(false);
-        if (ericPage != null) ericPage.SetActive(false);
+        // Deactivate Alex's message and chat box
+        if (alexMessage != null) alexMessage.SetActive(false);
+        if (alexChatBox != null) alexChatBox.SetActive(false);
+
+        // Deactivate Eric's message and chat box
+        if (ericMessage != null) ericMessage.SetActive(false);
+        if (ericChatBox != null) ericChatBox.SetActive(false);
     }
 
-    public void switchScene()
+    private void ResetButtonPositions()
     {
-        if (!string.IsNullOrEmpty(scene))
+        // Reset button positions to default
+        if (alexButtonPosition != null)
+            alexButton.GetComponent<RectTransform>().anchoredPosition = alexButtonPosition.anchoredPosition;
+
+        if (ericButtonPosition != null)
+            ericButton.GetComponent<RectTransform>().anchoredPosition = ericButtonPosition.anchoredPosition;
+    }
+
+    private void SwitchButtonPositions(RectTransform newPosition, RectTransform oldPosition)
+    {
+        // Swap positions between the buttons
+        if (alexButton != null && ericButton != null)
         {
-            Debug.Log($"Switching to scene: {scene}");
-            SceneManager.LoadScene(scene); // Load the specified scene
+            Vector2 tempPosition = newPosition.anchoredPosition;
+            newPosition.anchoredPosition = oldPosition.anchoredPosition;
+            oldPosition.anchoredPosition = tempPosition;
+        }
+    }
+     public void SwitchScene()
+    {
+        if (!string.IsNullOrEmpty(sceneName))
+        {
+            Debug.Log($"Switching to scene: {sceneName}");
+            SceneManager.LoadScene(sceneName); // Load the specified scene
         }
         else
         {
-            Debug.LogError("Target scene name is not assigned or empty!");
+            Debug.LogError("Scene name is not assigned or empty!");
         }
     }
-    }
-
-
+}

@@ -1126,7 +1126,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 618080108}
-  - component: {fileID: 618080107}
+  - component: {fileID: 618080109}
   m_Layer: 0
   m_Name: Scripts
   m_TagString: Untagged
@@ -1134,22 +1134,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &618080107
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 618080106}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 40a0704ada1183a419a8ea7381a9c36e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  alexPage: {fileID: 1571881422}
-  youPage: {fileID: 230897747}
-  ericPage: {fileID: 565814109}
-  scene: 
 --- !u!4 &618080108
 Transform:
   m_ObjectHideFlags: 0
@@ -1165,6 +1149,22 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &618080109
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 618080106}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68cbe8e1faa2f244098e499f344dcfa6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  alexPage: {fileID: 1571881422}
+  ericPage: {fileID: 565814109}
+  youPage: {fileID: 230897747}
+  sceneName: 
 --- !u!1 &669879321
 GameObject:
   m_ObjectHideFlags: 0
@@ -1921,9 +1921,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 618080107}
-        m_TargetAssemblyTypeName: ActivateGameObject, Assembly-CSharp
-        m_MethodName: ActivateYourPage
+      - m_Target: {fileID: 618080109}
+        m_TargetAssemblyTypeName: SwicthInIns, Assembly-CSharp
+        m_MethodName: ActivateYouPage
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2322,8 +2322,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 618080107}
-        m_TargetAssemblyTypeName: ActivateGameObject, Assembly-CSharp
+      - m_Target: {fileID: 618080109}
+        m_TargetAssemblyTypeName: SwicthInIns, Assembly-CSharp
         m_MethodName: ActivateAlexPage
         m_Mode: 1
         m_Arguments:
@@ -2455,9 +2455,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 618080107}
-        m_TargetAssemblyTypeName: ActivateGameObject, Assembly-CSharp
-        m_MethodName: switchScene
+      - m_Target: {fileID: 618080109}
+        m_TargetAssemblyTypeName: SwicthInIns, Assembly-CSharp
+        m_MethodName: SwitchScene
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2689,7 +2689,6 @@ MonoBehaviour:
   zoomInSize: 5
   zoomOutSize: 7.94
   zoomSpeed: 2
-  gameObjects: []
 --- !u!1 &1902442825
 GameObject:
   m_ObjectHideFlags: 0
@@ -3312,8 +3311,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 618080107}
-        m_TargetAssemblyTypeName: ActivateGameObject, Assembly-CSharp
+      - m_Target: {fileID: 618080109}
+        m_TargetAssemblyTypeName: SwicthInIns, Assembly-CSharp
         m_MethodName: ActivateEricPage
         m_Mode: 1
         m_Arguments:
@@ -3452,6 +3451,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3313576164430827428, guid: 8704953020f4901479a412a566da3fe3, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7019909852664769208, guid: 8704953020f4901479a412a566da3fe3, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7019909852664769208, guid: 8704953020f4901479a412a566da3fe3, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7019909852664769208, guid: 8704953020f4901479a412a566da3fe3, type: 3}
+      propertyPath: m_SizeDelta.x
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
