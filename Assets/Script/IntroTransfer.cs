@@ -8,7 +8,10 @@ public class IntroTransfer : MonoBehaviour
     public GameObject object1; 
     public GameObject object2; 
     public GameObject object3; 
-    public GameObject object4; 
+    public GameObject object4;
+    //public bool ifsolveAllGamePuzzle = false;
+    //if user first enter ins-> then its false but then after they solve the captcha
+    //begins true-> if true then they dont have to do the LogIn
     private int currentIndex = 0;
     private string nextSceneName;
     // Start is called before the first frame update

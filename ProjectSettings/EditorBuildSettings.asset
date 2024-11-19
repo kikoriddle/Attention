@@ -5,7 +5,7 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/SampleScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 1
@@ -14,6 +14,12 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/01 Main Window.unity
     guid: 31d9212651f8fc24b9c1d6a0a255638f
+  - enabled: 1
+    path: Assets/Scenes/02 INS LogIn.unity
+    guid: d8db7f3e47700174e8c2e34b8d3a6e2d
+  - enabled: 1
+    path: Assets/Scenes/03 Captcha.unity
+    guid: d83640d0ea6f5f040b38c0772945fd0f
   - enabled: 1
     path: Assets/Scenes/04 INS.unity
     guid: 6dd12252d7f73dd4c82c24eec384f124
