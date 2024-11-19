@@ -1,19 +1,26 @@
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class CaptcahManager : MonoBehaviour
 {
     [SerializeField] private Button[] imageButtons; // Array of 9 image buttons
     [SerializeField] private Button verifyButton;
-    [SerializeField] private TMPro.TextMeshProUGUI instructionText;
+    private string nextSceneName;
+    //public IntroTransfer insPuzzleController;  -> set the variable
+    //[SerializeField] private TMPro.TextMeshProUGUI instructionText;
 
     private bool[] selectedImages = new bool[9];
 
     void Start()
     {
+        nextSceneName = "04 INS";
+
         // Setup each image button
         for (int i = 0; i < imageButtons.Length; i++)
         {
+          //  Debug.Log("printing");
+
             int index = i; // Capture the index for lambda
             imageButtons[i].onClick.AddListener(() => ToggleImage(index));
         }
@@ -23,6 +30,8 @@ public class CaptcahManager : MonoBehaviour
 
     void ToggleImage(int index)
     {
+        //debug collider
+        Debug.Log("Hitting the button");
         selectedImages[index] = !selectedImages[index];
 
         // Visual feedback
@@ -37,10 +46,11 @@ public class CaptcahManager : MonoBehaviour
     void VerifySelection()
     {
         // Add your verification logic here
+        Debug.Log("Hitting the verify");
         bool isCorrect = true;
         // Example: check if correct images are selected
         // Modify these indices based on your correct answers
-        bool[] correctAnswers = { true, false, true, false, true, false, true, false, true };
+        bool[] correctAnswers = { false, false, true, false, false, true, false, true, false };
 
         for (int i = 0; i < 9; i++)
         {
@@ -54,7 +64,19 @@ public class CaptcahManager : MonoBehaviour
         if (isCorrect)
         {
             Debug.Log("Correct selection!");
+            //isSolveAllInsPuzzle = true
             // Add success logic
+            // go to the ins main page
+            if (!string.IsNullOrEmpty(nextSceneName))
+            {
+                SceneManager.LoadScene(nextSceneName);
+                return; // Exit to prevent further code execution
+            }
+            else
+            {
+                Debug.LogError("Next scene name is not assigned!");
+                return;
+            }
         }
         else
         {
