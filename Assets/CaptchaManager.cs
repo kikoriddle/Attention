@@ -1,12 +1,14 @@
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using System.Collections;
 
 public class CaptcahManager : MonoBehaviour
 {
     [SerializeField] private Button[] imageButtons; // Array of 9 image buttons
     [SerializeField] private Button verifyButton;
     private string nextSceneName;
+    public Animator transitionAnimator; 
     //public IntroTransfer insPuzzleController;  -> set the variable
     //[SerializeField] private TMPro.TextMeshProUGUI instructionText;
 
@@ -62,26 +64,59 @@ public class CaptcahManager : MonoBehaviour
         }
 
         if (isCorrect)
-        {
-            Debug.Log("Correct selection!");
-            //isSolveAllInsPuzzle = true
-            // Add success logic
-            // go to the ins main page
-            if (!string.IsNullOrEmpty(nextSceneName))
-            {
-                SceneManager.LoadScene(nextSceneName);
-                return; // Exit to prevent further code execution
-            }
-            else
-            {
-                Debug.LogError("Next scene name is not assigned!");
-                return;
-            }
-        }
-        else
-        {
-            Debug.Log("Try again!");
-            // Reset or retry logic
-        }
+{
+    Debug.Log("Correct selection!");
+
+    // Check if an animation should play before transitioning
+    if (transitionAnimator != null)
+    {
+        StartCoroutine(PlayAnimationAndSwitchScene());
+    }
+    else if (!string.IsNullOrEmpty(nextSceneName))
+    {
+        // Directly load the next scene if no animation is needed
+        SceneManager.LoadScene(nextSceneName);
+        return; // Exit to prevent further code execution
+    }
+    else
+    {
+        Debug.LogError("Next scene name is not assigned!");
+        return;
     }
 }
+else
+{
+    Debug.Log("Try again!");
+    // Reset or retry logic
+}
+    }
+
+// Coroutine to play animation and switch scene
+private IEnumerator PlayAnimationAndSwitchScene()
+{
+    if (transitionAnimator != null)
+    {
+        // Enable the GameObject to play the animation
+        GameObject animationObject = transitionAnimator.gameObject;
+        animationObject.SetActive(true);
+
+        // Play the animation
+        transitionAnimator.Play("AnimationName"); // Replace "AnimationName" with your animation's name
+
+        // Wait for the animation to complete
+        float animationLength = transitionAnimator.GetCurrentAnimatorStateInfo(0).length;
+        yield return new WaitForSeconds(animationLength); // Wait for the animation's duration
+    }
+
+    // Load the next scene (leave the animation active until it's done)
+    if (!string.IsNullOrEmpty(nextSceneName))
+    {
+        SceneManager.LoadScene(nextSceneName);
+    }
+    else
+    {
+        Debug.LogError("Next scene name is not assigned!");
+    }
+}
+
+    }

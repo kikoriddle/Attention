@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.SceneManagement;
+using System.Collections; 
 
 public class LogInManager : MonoBehaviour
 {
@@ -12,7 +13,7 @@ public class LogInManager : MonoBehaviour
     public Button forgotPasswordButton;
     public TextMeshProUGUI errorText;
     public GameObject loginPanel;
-
+    public Animator transitionAnimator;
     public string Password;
     private const string INITIAL_PASSWORD = "fair41wEd";
     public bool resetPass = false;
@@ -77,16 +78,19 @@ public class LogInManager : MonoBehaviour
             Debug.Log("Login successful!");
             // maybe set things not active?
             //loginPanel.gameObject.SetActive(false);
-            if (!string.IsNullOrEmpty(nextSceneName))
+            if (transitionAnimator != null)
+            {
+                StartCoroutine(PlayAnimationAndSwitchScene());
+            }
+            else if (!string.IsNullOrEmpty(nextSceneName))
             {
                 SceneManager.LoadScene(nextSceneName);
-                return; // Exit to prevent further code execution
             }
             else
             {
                 Debug.LogError("Next scene name is not assigned!");
-                return;
             }
+            
         }
         else
         {
@@ -109,4 +113,32 @@ public class LogInManager : MonoBehaviour
         usernameInput.onValueChanged.RemoveAllListeners();
         passwordInput.onValueChanged.RemoveAllListeners();
     }
+    private IEnumerator PlayAnimationAndSwitchScene()
+{
+    if (transitionAnimator != null)
+    {
+        // Enable the GameObject to play the animation
+        GameObject animationObject = transitionAnimator.gameObject;
+        animationObject.SetActive(true);
+
+        // Play the animation
+        transitionAnimator.Play("AnimationName"); // Replace "AnimationName" with your animation's name
+
+        // Wait for the animation to complete
+        yield return new WaitForSeconds(1f); // Adjust this duration to match the animation length
+
+        // Turn off the animation GameObject
+        animationObject.SetActive(false);
+    }
+
+    // Load the next scene
+    if (!string.IsNullOrEmpty(nextSceneName))
+    {
+        SceneManager.LoadScene(nextSceneName);
+    }
+    else
+    {
+        Debug.LogError("Next scene name is not assigned!");
+    }
+}
 }
