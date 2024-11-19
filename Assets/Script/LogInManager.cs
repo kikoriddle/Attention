@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class LogInManager : MonoBehaviour
 {
@@ -19,9 +20,11 @@ public class LogInManager : MonoBehaviour
     //call security panel
     public GameObject securityPanel;
     public GameObject newPassPanel;
+    private string nextSceneName;
     // Start is called before the first frame update
     void Start()
     {
+        nextSceneName = "03 Captcha";
         errorText.gameObject.SetActive(false);
         securityPanel.SetActive(false);
         newPassPanel.SetActive(false);
@@ -74,6 +77,16 @@ public class LogInManager : MonoBehaviour
             Debug.Log("Login successful!");
             // maybe set things not active?
             //loginPanel.gameObject.SetActive(false);
+            if (!string.IsNullOrEmpty(nextSceneName))
+            {
+                SceneManager.LoadScene(nextSceneName);
+                return; // Exit to prevent further code execution
+            }
+            else
+            {
+                Debug.LogError("Next scene name is not assigned!");
+                return;
+            }
         }
         else
         {
