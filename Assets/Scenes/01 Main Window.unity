@@ -1173,7 +1173,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5761446695308260972, guid: cb410304e52359c45a4f020a18904607, type: 3}
       propertyPath: m_TagString
-      value: 04 INS
+      value: 02 INS LogIn
       objectReference: {fileID: 0}
     - target: {fileID: 7598987818433030702, guid: cb410304e52359c45a4f020a18904607, type: 3}
       propertyPath: m_LocalPosition.x
