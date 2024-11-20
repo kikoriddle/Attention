@@ -4,9 +4,7 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Ins
   - Message
-  - 03 INS
   - 04 INS
   layers:
   - Default
