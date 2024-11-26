@@ -5,10 +5,10 @@ using UnityEngine.SceneManagement;
 
 public class SwicthInIns : MonoBehaviour
 {
-   
     public GameObject alexPage; // Assign Alex's page in the Inspector
     public GameObject ericPage; // Assign Eric's page in the Inspector
     public GameObject youPage; // Assign Your page in the Inspector
+    public GameObject gPage; // Assign G's page in the Inspector
 
     public string sceneName; // Name of the scene to switch to
 
@@ -47,6 +47,16 @@ public class SwicthInIns : MonoBehaviour
         Debug.Log("Your page has been activated!");
     }
 
+    public void ActivateGPage()
+    {
+        DeactivateAllPages(); // Turn off all pages first
+
+        // Activate G's page
+        if (gPage != null) gPage.SetActive(true);
+
+        Debug.Log("G's page has been activated!");
+    }
+
     private void DeactivateAllPages()
     {
         // Deactivate Alex's page
@@ -57,6 +67,9 @@ public class SwicthInIns : MonoBehaviour
 
         // Deactivate Your page
         if (youPage != null) youPage.SetActive(false);
+
+        // Deactivate G's page
+        if (gPage != null) gPage.SetActive(false);
     }
 
     public void SwitchScene()
@@ -72,5 +85,3 @@ public class SwicthInIns : MonoBehaviour
         }
     }
 }
-
-    

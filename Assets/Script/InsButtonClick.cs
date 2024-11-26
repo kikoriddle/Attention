@@ -1,91 +1,115 @@
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+
 public class ActivateGameObject : MonoBehaviour
 {
     public GameObject alexMessage; // Assign Alex's message in the Inspector
     public GameObject alexChatBox; // Assign Alex's chat box in the Inspector
     public GameObject ericMessage; // Assign Eric's message in the Inspector
     public GameObject ericChatBox; // Assign Eric's chat box in the Inspector
+    public GameObject bcMessage; // Assign BC's message in the Inspector
+    public GameObject bcChatBox; // Assign BC's chat box in the Inspector
 
     public Button alexButton; // Assign Alex's button in the Inspector
     public Button ericButton; // Assign Eric's button in the Inspector
+    public Button bcButton; // Assign BC's button in the Inspector
 
-    public RectTransform alexButtonPosition; // Reference to Alex's button position
-    public RectTransform ericButtonPosition; // Reference to Eric's button position
+    private Vector2 topPosition; // Top position
+    private Vector2 midPosition; // Middle position
+    private Vector2 bottomPosition; // Bottom position
+
+    private RectTransform alexButtonRect;
+    private RectTransform ericButtonRect;
+    private RectTransform bcButtonRect;
+
     public string sceneName;
 
     void Start()
     {
         sceneName = "01 Main Window";
-        ResetButtonPositions();
+
+        // Get RectTransform components
+        alexButtonRect = alexButton.GetComponent<RectTransform>();
+        ericButtonRect = ericButton.GetComponent<RectTransform>();
+        bcButtonRect = bcButton.GetComponent<RectTransform>();
+
+        // Record initial positions
+        topPosition = alexButtonRect.anchoredPosition; // Assume Alex starts at the top
+        midPosition = ericButtonRect.anchoredPosition; // Eric starts in the middle
+        bottomPosition = bcButtonRect.anchoredPosition; // BC starts at the bottom
+
+        // Activate Alex's page by default
+        ActivateAlexPage();
     }
 
     public void ActivateAlexPage()
     {
-        DeactivateAllPages(); // Turn off all pages first
+        DeactivateAllPages();
 
-        // Activate Alex's message and chat box
         if (alexMessage != null) alexMessage.SetActive(true);
         if (alexChatBox != null) alexChatBox.SetActive(true);
 
-        // Switch button positions
-        SwitchButtonPositions(alexButtonPosition, ericButtonPosition);
+        // Assign positions explicitly
+        SetButtonPositions(alexButtonRect, ericButtonRect, bcButtonRect);
 
-        Debug.Log("Alex's page has been activated!");
+        Debug.Log("Alex's page activated. Button positions updated.");
     }
 
     public void ActivateEricPage()
     {
-        DeactivateAllPages(); // Turn off all pages first
+        DeactivateAllPages();
 
-        // Activate Eric's message and chat box
         if (ericMessage != null) ericMessage.SetActive(true);
         if (ericChatBox != null) ericChatBox.SetActive(true);
 
-        // Switch button positions
-        SwitchButtonPositions(ericButtonPosition, alexButtonPosition);
+        // Assign positions explicitly
+        SetButtonPositions(ericButtonRect, alexButtonRect, bcButtonRect);
 
-        Debug.Log("Eric's page has been activated!");
+        Debug.Log("Eric's page activated. Button positions updated.");
+    }
+
+    public void ActivateBCPage()
+    {
+        DeactivateAllPages();
+
+        if (bcMessage != null) bcMessage.SetActive(true);
+        if (bcChatBox != null) bcChatBox.SetActive(true);
+
+        // Assign positions explicitly
+        SetButtonPositions(bcButtonRect, alexButtonRect, ericButtonRect);
+
+        Debug.Log("BC's page activated. Button positions updated.");
+    }
+
+    private void SetButtonPositions(RectTransform top, RectTransform mid, RectTransform bottom)
+    {
+        // Move buttons explicitly to their new positions
+        top.anchoredPosition = topPosition;
+        mid.anchoredPosition = midPosition;
+        bottom.anchoredPosition = bottomPosition;
     }
 
     private void DeactivateAllPages()
     {
-        // Deactivate Alex's message and chat box
         if (alexMessage != null) alexMessage.SetActive(false);
         if (alexChatBox != null) alexChatBox.SetActive(false);
 
-        // Deactivate Eric's message and chat box
         if (ericMessage != null) ericMessage.SetActive(false);
         if (ericChatBox != null) ericChatBox.SetActive(false);
+
+        if (bcMessage != null) bcMessage.SetActive(false);
+        if (bcChatBox != null) bcChatBox.SetActive(false);
+
+        Debug.Log("All pages deactivated.");
     }
 
-    private void ResetButtonPositions()
-    {
-        // Reset button positions to default
-        if (alexButtonPosition != null)
-            alexButton.GetComponent<RectTransform>().anchoredPosition = alexButtonPosition.anchoredPosition;
-
-        if (ericButtonPosition != null)
-            ericButton.GetComponent<RectTransform>().anchoredPosition = ericButtonPosition.anchoredPosition;
-    }
-
-    private void SwitchButtonPositions(RectTransform newPosition, RectTransform oldPosition)
-    {
-        // Swap positions between the buttons
-        if (alexButton != null && ericButton != null)
-        {
-            Vector2 tempPosition = newPosition.anchoredPosition;
-            newPosition.anchoredPosition = oldPosition.anchoredPosition;
-            oldPosition.anchoredPosition = tempPosition;
-        }
-    }
-     public void SwitchScene()
+    public void SwitchScene()
     {
         if (!string.IsNullOrEmpty(sceneName))
         {
             Debug.Log($"Switching to scene: {sceneName}");
-            SceneManager.LoadScene(sceneName); // Load the specified scene
+            SceneManager.LoadScene(sceneName);
         }
         else
         {
