@@ -1,13 +1,10 @@
 using UnityEngine;
-using System.Collections; // Required for Coroutines
+using System.Collections;
 
-public class camScriptForFinal : MonoBehaviour
+public class CamScriptForFinal : MonoBehaviour
 {
     public GameObject[] gameObjects; // Assign the series of GameObjects in the Inspector
     private int currentIndex = 0; // Tracks the currently active GameObject
-    public GameObject a;
-    public GameObject b;
-
     public GameObject animationObject; // Assign the GameObject with the animation
     public Camera mainCamera; // Assign the camera in the Inspector
     private float targetZoom;
@@ -31,13 +28,6 @@ public class camScriptForFinal : MonoBehaviour
             }
         }
 
-        // Ensure a and b are assigned
-        if (a == null || b == null)
-        {
-            Debug.LogError("GameObjects 'a' and 'b' must be assigned in the Inspector!");
-            return;
-        }
-
         // Ensure the animation object is assigned
         if (animationObject == null)
         {
@@ -47,9 +37,6 @@ public class camScriptForFinal : MonoBehaviour
 
         // Initialize the orthographic size of the camera
         targetZoom = mainCamera.orthographicSize;
-
-        // Initialize the GameObjects array with 'a' and 'b'
-        gameObjects = new GameObject[] { a, b };
 
         // Activate the first GameObject in the series
         ActivateCurrentGameObject();
@@ -118,7 +105,15 @@ public class camScriptForFinal : MonoBehaviour
         if (animationObject != null)
         {
             animationObject.SetActive(true); // Activate the animation GameObject
-            yield return new WaitForSeconds(animationObject.GetComponent<Animator>().runtimeAnimatorController.animationClips[0].length); // Wait for the animation to finish
+            Animator animator = animationObject.GetComponent<Animator>();
+            if (animator != null)
+            {
+                AnimatorClipInfo[] clips = animator.GetCurrentAnimatorClipInfo(0);
+                if (clips.Length > 0)
+                {
+                    yield return new WaitForSeconds(clips[0].clip.length); // Wait for animation length
+                }
+            }
             animationObject.SetActive(false); // Deactivate the animation GameObject
         }
 
@@ -133,13 +128,6 @@ public class camScriptForFinal : MonoBehaviour
     {
         if (gameObjects == null || gameObjects.Length == 0) yield break; // No GameObjects to switch
 
-        // Check if we're at the first GameObject
-        if (currentIndex == 0)
-        {
-            Debug.Log("End"); // Print "End" if there's no previous GameObject
-            yield break;
-        }
-
         // Deactivate the currently active GameObject
         if (gameObjects[currentIndex] != null)
         {
@@ -150,12 +138,20 @@ public class camScriptForFinal : MonoBehaviour
         if (animationObject != null)
         {
             animationObject.SetActive(true); // Activate the animation GameObject
-            yield return new WaitForSeconds(animationObject.GetComponent<Animator>().runtimeAnimatorController.animationClips[0].length); // Wait for the animation to finish
+            Animator animator = animationObject.GetComponent<Animator>();
+            if (animator != null)
+            {
+                AnimatorClipInfo[] clips = animator.GetCurrentAnimatorClipInfo(0);
+                if (clips.Length > 0)
+                {
+                    yield return new WaitForSeconds(clips[0].clip.length); // Wait for animation length
+                }
+            }
             animationObject.SetActive(false); // Deactivate the animation GameObject
         }
 
         // Decrement the index (do not allow it to go below 0)
-        currentIndex--;
+        currentIndex = (currentIndex - 1 + gameObjects.Length) % gameObjects.Length;
 
         // Activate the new current GameObject
         ActivateCurrentGameObject();

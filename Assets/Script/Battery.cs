@@ -5,6 +5,7 @@ using UnityEngine;
 public class Battery : MonoBehaviour
 {
     public static int totalClickCount = 0;
+    public static bool fullyCollected = false; // Tracks if all batteries are collected
 
     private bool isClicked = false; // Ensures the object is clicked only once
 
@@ -43,6 +44,13 @@ public class Battery : MonoBehaviour
 
             // Start coroutine to turn off the GameObject after the animation plays
             StartCoroutine(DeactivateAfterAnimation());
+
+            // Check if all batteries are collected
+            if (totalClickCount >= 3) // Adjust this number based on the total number of batteries
+            {
+                fullyCollected = true;
+                Debug.Log("All batteries have been collected!");
+            }
         }
     }
 

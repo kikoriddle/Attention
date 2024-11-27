@@ -26,8 +26,6 @@ public class SecurityManager : MonoBehaviour
 
     private float clickTime;
 
- 
-
     private void Awake()
     {
         // Initialize in Awake for faster startup
@@ -77,11 +75,9 @@ public class SecurityManager : MonoBehaviour
         // ... rest of the code ...
         float processTime = Time.realtimeSinceStartup - clickTime;
         Debug.Log($"Process time: {processTime * 1000}ms");
-
-
     }
 
-    private void ValidateAnswers() 
+    private void ValidateAnswers()
     {
         // Immediate validation without method call
         if (birthdayDropdown.value == 0 ||
@@ -110,6 +106,7 @@ public class SecurityManager : MonoBehaviour
             errorText.text = "One or more answers are incorrect";
         }
     }
+
     private void ResetDropdowns()
     {
         birthdayDropdown.value = 0;

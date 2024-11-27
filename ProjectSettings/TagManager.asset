@@ -8,6 +8,7 @@ TagManager:
   - 04 INS
   - 02 INS Log In
   - 02 INS LogIn
+  - Battery
   layers:
   - Default
   - TransparentFX
