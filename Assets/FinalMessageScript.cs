@@ -30,6 +30,12 @@ public class FinalMessageScript : MonoBehaviour
     // Transition GameObject for fade animation (e.g., a UI Panel or Image)
     public GameObject transitionObject;
 
+    // Static booleans for the combinations
+    public static bool turnA = false;
+    public static bool turnB = false;
+    public static bool turnC = false;
+    public static bool turnD = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -72,8 +78,6 @@ public class FinalMessageScript : MonoBehaviour
         alexButtonY.interactable = false;
         alexButtonB.interactable = false;
         alexGameObject.SetActive(true);  // Show Alex's GameObject
-
-        
     }
 
     // Method to activate Alex's B object and play its animation
@@ -86,8 +90,6 @@ public class FinalMessageScript : MonoBehaviour
         alexButtonY.interactable = false;
         alexButtonB.interactable = false;
         alexGameObject.SetActive(true);  // Show Alex's GameObject
-
-        
     }
 
     // Method to activate Eric's Y object and play its animation
@@ -100,9 +102,6 @@ public class FinalMessageScript : MonoBehaviour
         ericButtonY.interactable = false;
         ericButtonB.interactable = false;
         ericGameObject.SetActive(true);  // Show Eric's GameObject
-
-        // Disable Alex's buttons
-        
     }
 
     // Method to activate Eric's B object and play its animation
@@ -115,8 +114,6 @@ public class FinalMessageScript : MonoBehaviour
         ericButtonY.interactable = false;
         ericButtonB.interactable = false;
         ericGameObject.SetActive(true);  // Show Eric's GameObject
-
-        
     }
 
     // Coroutine to play the animation of the object
@@ -155,8 +152,33 @@ public class FinalMessageScript : MonoBehaviour
             ericBPlayed = true;
         }
 
+        // Update the static booleans based on the combination of button presses
+        UpdateBooleanFlags();
+
         // Check if the condition for switching the scene is met
         CheckAndSwitchScene();
+    }
+
+    // Method to update the static booleans based on the combination of button presses
+    void UpdateBooleanFlags()
+    {
+        // Set the static booleans based on the combinations of Alex and Eric choices
+        if (alexYPlayed && ericYPlayed)
+        {
+            turnA = true; // Combination of AlexY and EricY
+        }
+        else if (alexYPlayed && ericBPlayed)
+        {
+            turnB = true; // Combination of AlexY and EricB
+        }
+        else if (alexBPlayed && ericYPlayed)
+        {
+            turnC = true; // Combination of AlexB and EricY
+        }
+        else if (alexBPlayed && ericBPlayed)
+        {
+            turnD = true; // Combination of AlexB and EricB
+        }
     }
 
     // Method to check if the condition for switching the scene is met

@@ -344,7 +344,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2055665386225279126, guid: 8704953020f4901479a412a566da3fe3, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -388.45007
+      value: -388.45
       objectReference: {fileID: 0}
     - target: {fileID: 2217449639732595211, guid: 8704953020f4901479a412a566da3fe3, type: 3}
       propertyPath: m_Name
@@ -2692,8 +2692,8 @@ Transform:
   m_GameObject: {fileID: 1475565292}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 44.934536, y: -43.228848, z: -4047.709}
-  m_LocalScale: {x: 33.8192, y: 33.8192, z: 33.8192}
+  m_LocalPosition: {x: 44.934536, y: -50.89, z: -4047.709}
+  m_LocalScale: {x: 33.8192, y: 33.142815, z: 33.8192}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1939197429}
@@ -2716,7 +2716,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1508296965
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2845,7 +2845,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2217449639732595211, guid: 8704953020f4901479a412a566da3fe3, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3203607130096794744, guid: 8704953020f4901479a412a566da3fe3, type: 3}
       propertyPath: m_Horizontal
@@ -2953,15 +2953,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7019909852664769208, guid: 8704953020f4901479a412a566da3fe3, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7019909852664769208, guid: 8704953020f4901479a412a566da3fe3, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7019909852664769208, guid: 8704953020f4901479a412a566da3fe3, type: 3}
       propertyPath: m_SizeDelta.x
-      value: -21
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8089108947185878452, guid: 8704953020f4901479a412a566da3fe3, type: 3}
       propertyPath: m_Sprite
@@ -3200,8 +3200,8 @@ Transform:
   m_GameObject: {fileID: 1880566872}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 44.934536, y: -43.228855, z: -4047.7092}
-  m_LocalScale: {x: 33.819057, y: 33.819057, z: 33.819057}
+  m_LocalPosition: {x: 44.934536, y: -50.89, z: -4047.7092}
+  m_LocalScale: {x: 33.819057, y: 33.142677, z: 33.819057}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 874234113}
