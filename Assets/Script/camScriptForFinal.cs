@@ -6,6 +6,8 @@ public class CamScriptForFinal : MonoBehaviour
 {
     public GameObject[] gameObjects; // Assign the series of GameObjects in the Inspector
     private int currentIndex = 0; // Tracks the currently active GameObject
+    //animation object with other stuff
+    public AudioSource transitionSound;  
     public GameObject animationObject; // Assign the GameObject with the animation
     public Camera mainCamera; // Assign the camera in the Inspector
     private float targetZoom;
@@ -172,6 +174,11 @@ public class CamScriptForFinal : MonoBehaviour
 
         // Preload the next GameObject while playing the animation
         GameObject nextGameObject = gameObjects[(currentIndex + 1) % gameObjects.Length];
+        //play sound
+        if (transitionSound != null)
+        {
+            transitionSound.Play();
+        }
 
         // Play the animation
         if (animationObject != null)
