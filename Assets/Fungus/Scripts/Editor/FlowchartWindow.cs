@@ -341,12 +341,20 @@ namespace Fungus.EditorUtils
 #endif
 
         protected void Undo_ForceRepaint()
-        {
-            //an undo redo may have added or removed blocks so
-            UpdateBlockCollection();
-            flowchart.UpdateSelectedCache();
-            Repaint();
-        }
+{
+    // Check if flowchart is null
+    if (flowchart == null)
+    {
+        Debug.LogError("Flowchart is null! Cannot call UpdateSelectedCache.");
+        return;
+    }
+
+    //an undo redo may have added or removed blocks so
+    UpdateBlockCollection();
+    flowchart.UpdateSelectedCache();
+    Repaint();
+}
+
 
         protected void OnEditorUpdate()
         {

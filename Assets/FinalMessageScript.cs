@@ -11,6 +11,10 @@ public class FinalMessageScript : MonoBehaviour
     public GameObject ericObjectY;
     public GameObject ericObjectB;
 
+    // New GameObjects for Alex and Eric (to show when their buttons are clicked)
+    public GameObject alexGameObject;
+    public GameObject ericGameObject;
+
     // Buttons for the UI
     public Button alexButtonY;
     public Button alexButtonB;
@@ -38,12 +42,17 @@ public class FinalMessageScript : MonoBehaviour
         // Ensure the transition object is initially inactive
         transitionObject.SetActive(false);
 
+        // Ensure Alex and Eric GameObjects are initially inactive
+        alexGameObject.SetActive(false);
+        ericGameObject.SetActive(false);
+
         // Add listeners for button clicks
         alexButtonY.onClick.AddListener(ActivateAlexObjectY);
         alexButtonB.onClick.AddListener(ActivateAlexObjectB);
         ericButtonY.onClick.AddListener(ActivateEricObjectY);
         ericButtonB.onClick.AddListener(ActivateEricObjectB);
     }
+
     void Update()
     {
         // Check if the "R" key is pressed to trigger the transition animation
@@ -58,6 +67,13 @@ public class FinalMessageScript : MonoBehaviour
     {
         alexObjectY.SetActive(true);  // Activate the Alex Y object
         StartCoroutine(PlayAnimation(alexObjectY, "AlexY"));
+
+        // Disable Alex's buttons and activate his game object
+        alexButtonY.interactable = false;
+        alexButtonB.interactable = false;
+        alexGameObject.SetActive(true);  // Show Alex's GameObject
+
+        
     }
 
     // Method to activate Alex's B object and play its animation
@@ -65,6 +81,13 @@ public class FinalMessageScript : MonoBehaviour
     {
         alexObjectB.SetActive(true);  // Activate the Alex B object
         StartCoroutine(PlayAnimation(alexObjectB, "AlexB"));
+
+        // Disable Alex's buttons and activate his game object
+        alexButtonY.interactable = false;
+        alexButtonB.interactable = false;
+        alexGameObject.SetActive(true);  // Show Alex's GameObject
+
+        
     }
 
     // Method to activate Eric's Y object and play its animation
@@ -72,6 +95,14 @@ public class FinalMessageScript : MonoBehaviour
     {
         ericObjectY.SetActive(true);  // Activate the Eric Y object
         StartCoroutine(PlayAnimation(ericObjectY, "EricY"));
+
+        // Disable Eric's buttons and activate his game object
+        ericButtonY.interactable = false;
+        ericButtonB.interactable = false;
+        ericGameObject.SetActive(true);  // Show Eric's GameObject
+
+        // Disable Alex's buttons
+        
     }
 
     // Method to activate Eric's B object and play its animation
@@ -79,6 +110,13 @@ public class FinalMessageScript : MonoBehaviour
     {
         ericObjectB.SetActive(true);  // Activate the Eric B object
         StartCoroutine(PlayAnimation(ericObjectB, "EricB"));
+
+        // Disable Eric's buttons and activate his game object
+        ericButtonY.interactable = false;
+        ericButtonB.interactable = false;
+        ericGameObject.SetActive(true);  // Show Eric's GameObject
+
+        
     }
 
     // Coroutine to play the animation of the object
@@ -117,15 +155,15 @@ public class FinalMessageScript : MonoBehaviour
             ericBPlayed = true;
         }
 
-        // Check if all animations have been played
+        // Check if the condition for switching the scene is met
         CheckAndSwitchScene();
     }
 
-    // Method to check if all animations have been completed and then switch the scene
+    // Method to check if the condition for switching the scene is met
     void CheckAndSwitchScene()
     {
-        // If all animations are played, proceed to the next scene
-        if (alexYPlayed && alexBPlayed && ericYPlayed && ericBPlayed)
+        // If one Alex object and one Eric object has played, proceed to the next scene
+        if ((alexYPlayed || alexBPlayed) && (ericYPlayed || ericBPlayed))
         {
             StartCoroutine(PlayTransitionAnimation());
         }
@@ -152,6 +190,6 @@ public class FinalMessageScript : MonoBehaviour
         }
 
         // After the transition, load the next scene
-        SceneManager.LoadScene("EndScene");  // Replace "NextSceneName" with your actual scene name
+        SceneManager.LoadScene("EndScene");  // Replace "EndScene" with your actual scene name
     }
 }
