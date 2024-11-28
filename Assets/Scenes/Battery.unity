@@ -1184,7 +1184,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -1427,7 +1427,7 @@ GameObject:
   - component: {fileID: 979863536}
   - component: {fileID: 979863535}
   - component: {fileID: 979863534}
-  - component: {fileID: 979863533}
+  - component: {fileID: 979863539}
   m_Layer: 0
   m_Name: b2
   m_TagString: Untagged
@@ -1435,27 +1435,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!95 &979863533
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 979863532}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 436e7a317ab720e40bf5bac9f9bd99ec, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!50 &979863534
 Rigidbody2D:
   serializedVersion: 4
@@ -1608,6 +1587,27 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -0.96}
+--- !u!95 &979863539
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 979863532}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 6b4504ad3deaec342b701594051a3aa2, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1132663341
 GameObject:
   m_ObjectHideFlags: 0
@@ -2265,7 +2265,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1438522313
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2802,13 +2802,13 @@ MonoBehaviour:
   button1: {fileID: 1132663343}
   button2: {fileID: 863239769}
   button3: {fileID: 1154750544}
-  nextSceneButton: {fileID: 0}
+  nextSceneButton: {fileID: 255749926}
   animator1: {fileID: 9515529}
-  animator2: {fileID: 979863533}
+  animator2: {fileID: 979863539}
   animator3: {fileID: 1574777992}
   rewardObject: {fileID: 255749925}
   animationObject: {fileID: 1155086454}
-  nextSceneName: NextSceneName
+  sceneName: Photo Albumn
 --- !u!4 &1807505088
 Transform:
   m_ObjectHideFlags: 0

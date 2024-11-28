@@ -454,7 +454,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0.78700006}
-  m_AnchoredPosition: {x: 3, y: 14.130005}
+  m_AnchoredPosition: {x: -43, y: 0}
   m_SizeDelta: {x: -61, y: -63}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &187627048
@@ -499,12 +499,12 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: f5d2ec7a919d73f4896c32457a4628f9, type: 3}
-    m_FontSize: 45
+    m_FontSize: 60
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 4
-    m_MaxSize: 50
-    m_Alignment: 0
+    m_MaxSize: 60
+    m_Alignment: 1
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
@@ -535,6 +535,7 @@ GameObject:
   - component: {fileID: 357971124}
   - component: {fileID: 357971123}
   - component: {fileID: 357971130}
+  - component: {fileID: 357971131}
   m_Layer: 0
   m_Name: Bad Result2
   m_TagString: Untagged
@@ -669,6 +670,7 @@ MonoBehaviour:
   - {fileID: 357971124}
   - {fileID: 357971123}
   - {fileID: 357971130}
+  - {fileID: 357971131}
   suppressAllAutoSelections: 0
 --- !u!114 &357971128
 MonoBehaviour:
@@ -696,7 +698,8 @@ MonoBehaviour:
     height: 859
   selectedBlocks:
   - {fileID: 357971127}
-  selectedCommands: []
+  selectedCommands:
+  - {fileID: 357971131}
   variables: []
   description: 
   stepPause: 0
@@ -750,6 +753,33 @@ MonoBehaviour:
   stopVoiceover: 1
   waitForVO: 0
   setSayDialog: {fileID: 0}
+--- !u!114 &357971131
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 357971122}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 6
+  indentLevel: 0
+  storyText: The End
+  description: 
+  character: {fileID: 0}
+  portrait: {fileID: 0}
+  voiceOverClip: {fileID: 0}
+  showAlways: 1
+  showCount: 1
+  extendPrevious: 0
+  fadeWhenDone: 1
+  waitForClick: 1
+  stopVoiceover: 1
+  waitForVO: 0
+  setSayDialog: {fileID: 0}
 --- !u!1 &606324479
 GameObject:
   m_ObjectHideFlags: 0
@@ -767,6 +797,7 @@ GameObject:
   - component: {fileID: 606324486}
   - component: {fileID: 606324485}
   - component: {fileID: 606324488}
+  - component: {fileID: 606324489}
   m_Layer: 0
   m_Name: Good Result
   m_TagString: Untagged
@@ -787,7 +818,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   version: 1
-  scrollPos: {x: 592.1666, y: 21.166687}
+  scrollPos: {x: 592.1666, y: 25.833344}
   variablesScrollPos: {x: 0, y: 0}
   variablesExpanded: 1
   blockViewHeight: 400
@@ -801,7 +832,7 @@ MonoBehaviour:
   selectedBlocks:
   - {fileID: 606324482}
   selectedCommands:
-  - {fileID: 606324481}
+  - {fileID: 606324489}
   variables: []
   description: 
   stepPause: 0
@@ -871,6 +902,7 @@ MonoBehaviour:
   - {fileID: 606324488}
   - {fileID: 606324486}
   - {fileID: 606324485}
+  - {fileID: 606324489}
   suppressAllAutoSelections: 0
 --- !u!114 &606324483
 MonoBehaviour:
@@ -999,6 +1031,33 @@ MonoBehaviour:
   indentLevel: 0
   storyText: 'It wasn''t until he left for his study abroad that she noticed the
     silence in all the spaces he used to fill left her so empty inside. '
+  description: 
+  character: {fileID: 0}
+  portrait: {fileID: 0}
+  voiceOverClip: {fileID: 0}
+  showAlways: 1
+  showCount: 1
+  extendPrevious: 0
+  fadeWhenDone: 1
+  waitForClick: 1
+  stopVoiceover: 1
+  waitForVO: 0
+  setSayDialog: {fileID: 0}
+--- !u!114 &606324489
+MonoBehaviour:
+  m_ObjectHideFlags: 2
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 606324479}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 6
+  indentLevel: 0
+  storyText: The End
   description: 
   character: {fileID: 0}
   portrait: {fileID: 0}
@@ -1241,6 +1300,7 @@ GameObject:
   - component: {fileID: 1695079135}
   - component: {fileID: 1695079143}
   - component: {fileID: 1695079142}
+  - component: {fileID: 1695079144}
   m_Layer: 0
   m_Name: Bad Result
   m_TagString: Untagged
@@ -1375,6 +1435,7 @@ MonoBehaviour:
   - {fileID: 1695079135}
   - {fileID: 1695079142}
   - {fileID: 1695079143}
+  - {fileID: 1695079144}
   suppressAllAutoSelections: 0
 --- !u!114 &1695079140
 MonoBehaviour:
@@ -1403,7 +1464,7 @@ MonoBehaviour:
   selectedBlocks:
   - {fileID: 1695079139}
   selectedCommands:
-  - {fileID: 1695079143}
+  - {fileID: 1695079144}
   variables: []
   description: 
   stepPause: 0
@@ -1472,6 +1533,33 @@ MonoBehaviour:
   itemId: 4
   indentLevel: 0
   storyText: 'It was all an illusion. '
+  description: 
+  character: {fileID: 0}
+  portrait: {fileID: 0}
+  voiceOverClip: {fileID: 0}
+  showAlways: 1
+  showCount: 1
+  extendPrevious: 0
+  fadeWhenDone: 1
+  waitForClick: 1
+  stopVoiceover: 1
+  waitForVO: 0
+  setSayDialog: {fileID: 0}
+--- !u!114 &1695079144
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1695079134}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 6
+  indentLevel: 0
+  storyText: The End
   description: 
   character: {fileID: 0}
   portrait: {fileID: 0}
@@ -1772,6 +1860,7 @@ GameObject:
   - component: {fileID: 2091509684}
   - component: {fileID: 2091509683}
   - component: {fileID: 2091509681}
+  - component: {fileID: 2091509688}
   m_Layer: 0
   m_Name: Bad Result3
   m_TagString: Untagged
@@ -1806,7 +1895,7 @@ MonoBehaviour:
   selectedBlocks:
   - {fileID: 2091509682}
   selectedCommands:
-  - {fileID: 2091509681}
+  - {fileID: 2091509688}
   variables: []
   description: 
   stepPause: 0
@@ -1875,6 +1964,7 @@ MonoBehaviour:
   - {fileID: 2091509684}
   - {fileID: 2091509683}
   - {fileID: 2091509681}
+  - {fileID: 2091509688}
   suppressAllAutoSelections: 0
 --- !u!114 &2091509683
 MonoBehaviour:
@@ -1990,6 +2080,33 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2091509688
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2091509679}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 6
+  indentLevel: 0
+  storyText: The End
+  description: 
+  character: {fileID: 0}
+  portrait: {fileID: 0}
+  voiceOverClip: {fileID: 0}
+  showAlways: 1
+  showCount: 1
+  extendPrevious: 0
+  fadeWhenDone: 1
+  waitForClick: 1
+  stopVoiceover: 1
+  waitForVO: 0
+  setSayDialog: {fileID: 0}
 --- !u!1 &2129007018
 GameObject:
   m_ObjectHideFlags: 0

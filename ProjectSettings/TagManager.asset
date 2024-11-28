@@ -9,6 +9,7 @@ TagManager:
   - 02 INS Log In
   - 02 INS LogIn
   - Battery
+  - Message 1
   layers:
   - Default
   - TransparentFX

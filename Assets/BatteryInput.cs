@@ -1,7 +1,7 @@
-using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using System.Collections;
 
 public class BatteryInput : MonoBehaviour
 {
@@ -29,7 +29,7 @@ public class BatteryInput : MonoBehaviour
 
     private int animationsPlayedCount = 0; // Tracks the number of animations played
 
-    public string nextSceneName = "Photo Albumn"; // Scene to switch to for the next scene
+    public string sceneName = "01 Main Window"; // Scene to switch to for the next scene
 
     void Start()
     {
@@ -48,7 +48,7 @@ public class BatteryInput : MonoBehaviour
         if (button1 != null) button1.onClick.AddListener(PlayBattery1Animation);
         if (button2 != null) button2.onClick.AddListener(PlayBattery2Animation);
         if (button3 != null) button3.onClick.AddListener(PlayBattery3Animation);
-        if (nextSceneButton != null) nextSceneButton.onClick.AddListener(() => SwitchScene(nextSceneName));
+        if (nextSceneButton != null) nextSceneButton.onClick.AddListener(SwitchScene);
     }
 
     void Update()
@@ -140,42 +140,57 @@ public class BatteryInput : MonoBehaviour
         }
     }
 
-    public void SwitchScene(string sceneName)
+    // Switch scene with animation
+    public void SwitchScene()
     {
         if (isTransitioning) return; // Prevent multiple transitions
         isTransitioning = true;
 
-        if (animationObject != null)
-        {
-            StartCoroutine(PlayAnimationAndSwitchScene(sceneName));
-        }
-        else
-        {
-            Debug.Log($"Switching to scene: {sceneName}");
-            SceneManager.LoadScene(sceneName);
-        }
+        // Deactivate all game objects that could cause flashing
+        DeactivateCurrentSceneObjects();
+
+        // Activate the fade-out animation for the transition
+        if (animationObject != null) animationObject.SetActive(true);
+
+        // Load the next scene asynchronously
+        StartCoroutine(LoadSceneAsync(sceneName));
     }
 
-    private IEnumerator PlayAnimationAndSwitchScene(string sceneName)
+    private IEnumerator LoadSceneAsync(string sceneName)
     {
+        // Start loading the scene in the background
+        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(sceneName);
+
+        // Don't let the scene activate until the fade-out is complete
+        asyncLoad.allowSceneActivation = false;
+
+        // Wait until fade-out is complete (you can adjust the duration of the fade-out here)
+        yield return new WaitForSeconds(1f); // Wait for the fade duration
+
+        // Allow the scene to activate now
+        asyncLoad.allowSceneActivation = true;
+
+        // Wait until the scene is fully loaded
+        while (!asyncLoad.isDone)
+        {
+            yield return null;
+        }
+
+        // Deactivate the fade-out animation after the scene has loaded
         if (animationObject != null)
         {
-            animationObject.SetActive(true); // Activate the animation object
-            Debug.Log("Fade-out animation started.");
-
-            yield return new WaitForSeconds(1f); // Adjust this duration to match your animation
+            animationObject.SetActive(false);
         }
 
-        if (!string.IsNullOrEmpty(sceneName))
-        {
-            Debug.Log($"Switching to scene: {sceneName}");
-            SceneManager.LoadScene(sceneName);
-        }
+        Debug.Log($"Scene {sceneName} loaded and transition complete.");
+    }
 
-        if (animationObject != null)
-        {
-            animationObject.SetActive(false); // Deactivate the animation object
-            Debug.Log("Animation finished and object deactivated after scene load.");
-        }
+    private void DeactivateCurrentSceneObjects()
+    {
+        // Disable all objects in the current scene that may cause a flash
+        if (button1 != null) button1.gameObject.SetActive(false);
+        if (button2 != null) button2.gameObject.SetActive(false);
+        if (button3 != null) button3.gameObject.SetActive(false);
+        if (rewardObject != null) rewardObject.SetActive(false);
     }
 }
