@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -7,6 +6,9 @@ public class clickManager : MonoBehaviour
 {
     public static clickManager Instance;
     private AudioSource clickSource;
+
+    // Add a public GameObject that you want to activate for 3 seconds
+    public GameObject objectToActivate;
 
     void Awake()
     {
@@ -26,7 +28,6 @@ public class clickManager : MonoBehaviour
         }
     }
 
-
     void Update()
     {
         // Play sound on any mouse click
@@ -34,6 +35,11 @@ public class clickManager : MonoBehaviour
         {
             PlayClickSound();
         }
+
+        // If Left Shift is pressed, activate the object for 3 seconds
+        
+            ActivateObjectForTime();
+        
     }
 
     void AddClickSoundToButtons()
@@ -60,4 +66,34 @@ public class clickManager : MonoBehaviour
         AddClickSoundToButtons();
     }
 
+    // Activate the object for 3 seconds and then turn it off
+    private void ActivateObjectForTime()
+    {
+        if (objectToActivate != null)
+        {
+            objectToActivate.SetActive(true);  // Activate the object
+            Debug.Log($"{objectToActivate.name} activated!");
+
+            // Start a coroutine to deactivate it after 3 seconds
+            StartCoroutine(DeactivateAfterTime(3f));
+        }
+        else
+        {
+            Debug.LogError("objectToActivate is not assigned!");
+        }
+    }
+
+    // Coroutine to deactivate the object after a set amount of time
+    private IEnumerator DeactivateAfterTime(float time)
+    {
+        // Wait for the specified time (in this case, 3 seconds)
+        yield return new WaitForSeconds(time);
+
+        // Deactivate the object
+        if (objectToActivate != null)
+        {
+            objectToActivate.SetActive(false);
+            Debug.Log($"{objectToActivate.name} deactivated!");
+        }
+    }
 }

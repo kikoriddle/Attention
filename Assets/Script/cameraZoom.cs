@@ -24,7 +24,7 @@ public class cameraZoom : MonoBehaviour
     void Update()
     {
         // Handle zoom toggling
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.LeftShift))
         {
             ToggleZoom();
         }

@@ -41,32 +41,34 @@ public class IconManager : MonoBehaviour
     {
         if (animationObject != null)
         {
-            // Activate the animation object and play the animation
+            // Activate the animation object to play the transition animation
             animationObject.SetActive(true);
-            Debug.Log("Fade-out animation started.");
+            Debug.Log("Transition animation started.");
 
+            // Wait for the animation to finish
             Animator animator = animationObject.GetComponent<Animator>();
             if (animator != null)
             {
                 AnimatorStateInfo animationState = animator.GetCurrentAnimatorStateInfo(0);
-                yield return new WaitForSeconds(animationState.length);
+                yield return new WaitForSeconds(animationState.length); // Wait for the full animation duration
             }
             else
             {
-                yield return new WaitForSeconds(1f); // Fallback duration
+                // Fallback in case no Animator is found
+                yield return new WaitForSeconds(1f); // Default wait time for the transition
             }
         }
 
-        // Load the new scene
+        // After the animation is done, load the new scene
         if (!string.IsNullOrEmpty(sceneName))
         {
             Debug.Log($"Switching to scene: {sceneName}");
             SceneManager.LoadScene(sceneName);
 
-            // Wait for the new scene to load
+            // Wait for the scene to load (although SceneManager is async, we can skip this as SceneManager handles it)
             yield return null;
 
-            // Ensure the animation object is deactivated after the new scene loads
+            // After loading, deactivate the animation object to reset for future use
             if (animationObject != null)
             {
                 animationObject.SetActive(false);

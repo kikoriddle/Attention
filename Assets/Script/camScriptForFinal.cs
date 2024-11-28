@@ -9,6 +9,7 @@ public class CamScriptForFinal : MonoBehaviour
     public GameObject animationObject; // Assign the GameObject with the animation
     public Camera mainCamera; // Assign the camera in the Inspector
     private float targetZoom;
+    public static bool changeTag;
 
     public float zoomInSize = 5f;  // Orthographic size for zoomed-in state
     public float zoomOutSize = 10f; // Orthographic size for zoomed-out state
@@ -34,6 +35,7 @@ public class CamScriptForFinal : MonoBehaviour
 
     void Start()
     {
+        changeTag = false;
         // Reset PlayerPrefs only once per game session
         if (!hasResetPlayerPrefs)
         {
@@ -80,7 +82,7 @@ public class CamScriptForFinal : MonoBehaviour
         if (isAnimationPlaying) return;
 
         // Handle zoom toggling
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.LeftShift))
         {
             isZoomedOut = !isZoomedOut; // Toggle zoom state
             targetZoom = isZoomedOut ? zoomOutSize : zoomInSize;
@@ -268,7 +270,8 @@ public class CamScriptForFinal : MonoBehaviour
         }
 
         // Switch scene (replace "MainPage" with your actual scene name)
-        SceneManager.LoadScene("01 Main Window");
+        changeTag = true; 
+        SceneManager.LoadScene("Message 1");
     }
 
     // Static method to check if special objects have been activated

@@ -2494,7 +2494,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Content: {fileID: 1520255630}
-  m_Horizontal: 1
+  m_Horizontal: 0
   m_Vertical: 1
   m_MovementType: 2
   m_Elasticity: 0.1
@@ -4956,10 +4956,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scrollRect1: {fileID: 975145540}
   scrollRect2: {fileID: 230897749}
-  scrollRect3: {fileID: 565814110}
   message1: {fileID: 1728035243}
   message2: {fileID: 310620168}
-  message3: {fileID: 0}
 --- !u!1 &920128072
 GameObject:
   m_ObjectHideFlags: 0
@@ -10580,6 +10578,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2217449639732595211, guid: 8704953020f4901479a412a566da3fe3, type: 3}
       propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3203607130096794744, guid: 8704953020f4901479a412a566da3fe3, type: 3}
+      propertyPath: m_Horizontal
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3203607130096794744, guid: 8704953020f4901479a412a566da3fe3, type: 3}

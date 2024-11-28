@@ -35,12 +35,13 @@ public class SwitchInIns : MonoBehaviour
     void Update()
     {
         if (BatteryInput.batteryActivate)
-        {
-            battery.SetActive(true);
-            b1.SetActive(true);
-            b2.SetActive(true);
-            b3.SetActive(true);
-        }
+    {
+        // Check if objects are not destroyed before trying to access them
+        if (battery != null) battery.SetActive(true);
+        if (b1 != null) b1.SetActive(true);
+        if (b2 != null) b2.SetActive(true);
+        if (b3 != null) b3.SetActive(true);
+    }
     }
 
     public void ActivateAlexPage()

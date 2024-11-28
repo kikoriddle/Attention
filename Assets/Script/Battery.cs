@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Battery : MonoBehaviour
@@ -10,6 +9,7 @@ public class Battery : MonoBehaviour
     private bool isClicked = false; // Ensures the object is clicked only once
 
     public Animator animator; // Reference to an external Animator component
+    private SpriteRenderer spriteRenderer; // Reference to the SpriteRenderer component
 
     void Start()
     {
@@ -23,6 +23,15 @@ public class Battery : MonoBehaviour
         if (animator == null)
         {
             Debug.LogError("Animator is not assigned! Please attach an external Animator in the Inspector.");
+        }
+
+        // Get the SpriteRenderer component
+        spriteRenderer = GetComponent<SpriteRenderer>();
+
+        // Ensure the SpriteRenderer component is attached
+        if (spriteRenderer == null)
+        {
+            Debug.LogError($"GameObject {gameObject.name} does not have a SpriteRenderer component! Please add one.");
         }
     }
 
@@ -42,7 +51,7 @@ public class Battery : MonoBehaviour
                 Debug.Log("Triggered animation on external Animator.");
             }
 
-            // Start coroutine to turn off the GameObject after the animation plays
+            // Start coroutine to turn off the sprite renderer after the animation plays
             StartCoroutine(DeactivateAfterAnimation());
 
             // Check if all batteries are collected
@@ -63,7 +72,11 @@ public class Battery : MonoBehaviour
             yield return new WaitForSeconds(animationState.length);
         }
 
-        // Turn off the GameObject
-        gameObject.SetActive(false);
+        // Disable the SpriteRenderer component (make the sprite invisible)
+        if (spriteRenderer != null)
+        {
+            spriteRenderer.enabled = false;  // Hide the sprite by disabling the renderer
+            Debug.Log($"SpriteRenderer for {gameObject.name} disabled.");
+        }
     }
 }
