@@ -54,11 +54,12 @@ public class contentManage : MonoBehaviour
             SetScrollContent(alexScrollRect, alexContent3);
         }
 
-        if (ScrollTracker.IsMessage3Activated)
+        if (CamScriptForFinal.alexFinalActivated)
         {
             SetActiveAlexObjects(alex4, alex1, alex2, alex3);
             SetScrollContent(alexScrollRect, alexContent4);
         }
+        
     }
 
     void ManageEricObjects()
@@ -73,6 +74,11 @@ public class contentManage : MonoBehaviour
         {
             SetActiveEricObjects(eric3, eric1, eric2, eric4);
             SetScrollContent(ericScrollRect, ericContent3);
+        }
+        if (CamScriptForFinal.ericFinalActivated)
+        {
+            SetActiveAlexObjects(eric4, eric1, eric2, eric3);
+            SetScrollContent(ericScrollRect, ericContent4);
         }
     }
 

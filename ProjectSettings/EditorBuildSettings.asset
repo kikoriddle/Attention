@@ -30,6 +30,12 @@ EditorBuildSettings:
     path: Assets/Scenes/Battery.unity
     guid: 470b0fac66511d44681a62c7c57f70e6
   - enabled: 1
+    path: Assets/Scenes/Message 1.unity
+    guid: f69528c3e84f38e48869cfc8c2d71528
+  - enabled: 1
     path: Assets/Scenes/Photo Albumn.unity
     guid: 90109e55dbe3d414299ba9ef710a3c51
+  - enabled: 1
+    path: Assets/Scenes/EndScene.unity
+    guid: 709a9f23b327a6d4b8fd191c8b9bce39
   m_configObjects: {}

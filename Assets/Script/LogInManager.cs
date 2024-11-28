@@ -21,33 +21,49 @@ public class LogInManager : MonoBehaviour
     // Call security panel
     public GameObject securityPanel;
     public GameObject newPassPanel;
+    public static bool alex1turnOn;
 
     private string nextSceneName;
 
     // Static booleans for tracking
     public static bool HasLoggedInBefore { get; private set; }
-    public static bool alexGameObjectDestroyedBefore = false; // Tracks if the Alex game object was destroyed
-    public static bool alex1turnOn;
 
     public GameObject alexGameObject; // The game object to activate and destroy
+    private const string AlexDestroyedKey = "AlexGameObjectDestroyed"; // Key for PlayerPrefs
 
     void Start()
     {
         nextSceneName = "03 Captcha";
 
+        // Reset PlayerPrefs in Unity Editor for testing
+#if UNITY_EDITOR
+        PlayerPrefs.DeleteKey(AlexDestroyedKey);
+#endif
+
         // Initialize the login scene
         errorText.gameObject.SetActive(false);
         securityPanel.SetActive(false);
         newPassPanel.SetActive(false);
-        alex1turnOn = true;
 
         // Check if alexGameObject has been destroyed before
-        alexGameObjectDestroyedBefore = PlayerPrefs.GetInt("AlexGameObjectDestroyedBefore", 0) == 1;
+        bool alexDestroyed = PlayerPrefs.GetInt(AlexDestroyedKey, 0) == 1;
 
-        if (!alexGameObjectDestroyedBefore && alexGameObject != null)
+        if (alexDestroyed)
         {
-            alexGameObject.SetActive(true);
-            StartCoroutine(DestroyAlexGameObject());
+            if (alexGameObject != null)
+            {
+                Destroy(alexGameObject); // Permanently destroy the object if already destroyed
+                Debug.Log("alexGameObject was already destroyed in a previous session.");
+            }
+        }
+        else
+        {
+            if (alexGameObject != null)
+            {
+                alexGameObject.SetActive(true); // Activate alexGameObject only the first time
+                alex1turnOn = true; 
+                StartCoroutine(DestroyAlexGameObject());
+            }
         }
 
         loginButton.onClick.AddListener(HandleLogin);
@@ -165,10 +181,9 @@ public class LogInManager : MonoBehaviour
         if (alexGameObject != null)
         {
             Destroy(alexGameObject); // Destroy alexGameObject
-            alexGameObjectDestroyedBefore = true; // Mark as destroyed
-            PlayerPrefs.SetInt("AlexGameObjectDestroyedBefore", 1); // Save this state to PlayerPrefs
+            PlayerPrefs.SetInt(AlexDestroyedKey, 1); // Save this state to PlayerPrefs
             PlayerPrefs.Save();
-            Debug.Log("alexGameObject has been destroyed.");
+            Debug.Log("alexGameObject has been destroyed permanently.");
         }
     }
 }

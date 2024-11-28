@@ -1,9 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-
-
+using System.Collections;  // Add this line
 
 public class SwitchInIns : MonoBehaviour
 {
@@ -15,9 +12,6 @@ public class SwitchInIns : MonoBehaviour
     public GameObject b1;
     public GameObject b2;
     public GameObject b3;
-    
-    
-    
 
     public GameObject animationObject; // GameObject with animation
     public string sceneName; // Name of the scene to switch to
@@ -26,19 +20,21 @@ public class SwitchInIns : MonoBehaviour
 
     void Start()
     {
-        sceneName = "01 Main Window";
-        
+        sceneName = "01 Main Window";  // Set the default scene
 
         // Ensure animation object is inactive initially
         if (animationObject != null)
         {
             animationObject.SetActive(false);
         }
+
+        // Reset battery-related items on start
+        ResetBatteryItems();
     }
 
     void Update()
     {
-        if(BatteryInput.batteryActivate)
+        if (BatteryInput.batteryActivate)
         {
             battery.SetActive(true);
             b1.SetActive(true);
@@ -149,5 +145,13 @@ public class SwitchInIns : MonoBehaviour
         {
             Debug.LogError("Scene name is not assigned or empty!");
         }
+    }
+
+    private void ResetBatteryItems()
+    {
+        battery.SetActive(false);
+        b1.SetActive(false);
+        b2.SetActive(false);
+        b3.SetActive(false);
     }
 }
