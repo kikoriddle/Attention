@@ -1,28 +1,30 @@
-using System.Collections;
 using UnityEngine;
-using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
-public class clickManager : MonoBehaviour
+public class GlobalClickSound : MonoBehaviour
 {
-    public static clickManager Instance;
-    private AudioSource clickSource;
-
-    // Add a public GameObject that you want to activate for 3 seconds
-    public GameObject objectToActivate;
+    public static GlobalClickSound Instance;
+    private AudioSource audioSource;
 
     void Awake()
     {
-        // Singleton pattern
+        // Make sure only one exists across all scenes
         if (Instance == null)
         {
             Instance = this;
             DontDestroyOnLoad(gameObject);
-            clickSource = GetComponent<AudioSource>();
+            
+            // Get or add AudioSource
+            audioSource = GetComponent<AudioSource>();
+            if (audioSource == null)
+            {
+                audioSource = gameObject.AddComponent<AudioSource>();
+            }
 
-            // Find and add click sound to all buttons
-            AddClickSoundToButtons();
+            // Subscribe to scene loading event
+            SceneManager.sceneLoaded += OnSceneLoaded;
         }
-        else if (Instance != this)
+        else
         {
             Destroy(gameObject);
         }
@@ -30,70 +32,30 @@ public class clickManager : MonoBehaviour
 
     void Update()
     {
-        // Play sound on any mouse click
-        if (Input.GetMouseButtonDown(0)) // Left click
+        // Play sound on any mouse click in any scene
+        if (Input.GetMouseButtonDown(0))
         {
             PlayClickSound();
         }
-
-        // If Left Shift is pressed, activate the object for 3 seconds
-        
-            ActivateObjectForTime();
-        
     }
 
-    void AddClickSoundToButtons()
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        // Find all buttons in the scene
-        Button[] allButtons = FindObjectsOfType<Button>();
-        foreach (Button button in allButtons)
-        {
-            button.onClick.AddListener(PlayClickSound);
-        }
+        // Ensure sound still works in new scene
+        Debug.Log($"Scene {scene.name} loaded - Click sound ready");
     }
 
     public void PlayClickSound()
     {
-        if (clickSource != null)
+        if (audioSource != null && audioSource.clip != null)
         {
-            clickSource.PlayOneShot(clickSource.clip);
+            audioSource.PlayOneShot(audioSource.clip);
         }
     }
 
-    // Call this when loading new scenes to add sound to new buttons
-    public void SetupNewSceneButtons()
+    void OnDestroy()
     {
-        AddClickSoundToButtons();
-    }
-
-    // Activate the object for 3 seconds and then turn it off
-    private void ActivateObjectForTime()
-    {
-        if (objectToActivate != null)
-        {
-            objectToActivate.SetActive(true);  // Activate the object
-            Debug.Log($"{objectToActivate.name} activated!");
-
-            // Start a coroutine to deactivate it after 3 seconds
-            StartCoroutine(DeactivateAfterTime(3f));
-        }
-        else
-        {
-            Debug.LogError("objectToActivate is not assigned!");
-        }
-    }
-
-    // Coroutine to deactivate the object after a set amount of time
-    private IEnumerator DeactivateAfterTime(float time)
-    {
-        // Wait for the specified time (in this case, 3 seconds)
-        yield return new WaitForSeconds(time);
-
-        // Deactivate the object
-        if (objectToActivate != null)
-        {
-            objectToActivate.SetActive(false);
-            Debug.Log($"{objectToActivate.name} deactivated!");
-        }
+        // Clean up scene loading subscription
+        SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 }
