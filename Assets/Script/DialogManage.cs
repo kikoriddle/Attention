@@ -4,6 +4,13 @@ using UnityEngine;
 
 public class DialogManage : MonoBehaviour
 {
+    //music changing
+    public AudioSource introMusic;
+    public AudioSource endingMusic1;
+    public AudioSource endingMusic2;
+    private bool musicHasChanged = false;
+
+
     // References to the three GameObjects
     public GameObject objectA;
     public GameObject objectB;
@@ -15,7 +22,7 @@ public class DialogManage : MonoBehaviour
     public bool turnB = false;
     public bool turnC = false;
     public bool turnD = false;
-
+    public string backgroundMusicName = "backgroundManager"; 
     // Start is called before the first frame update
     void Start()
     {
@@ -24,11 +31,47 @@ public class DialogManage : MonoBehaviour
         objectB.SetActive(false);
         objectC.SetActive(false);
         objectD.SetActive(false);
+
+        //find it at do not destory
+         AudioSource[] allAudio = FindObjectsOfType<AudioSource>();
+        foreach (AudioSource audio in allAudio)
+        {
+            if (audio.gameObject.scene.name == "DontDestroyOnLoad" && 
+                audio.gameObject.name == backgroundMusicName)
+            {
+                introMusic = audio;
+                Debug.Log("Found background music: " + audio.gameObject.name);
+                break;
+            }
+        }
+    }
+
+    //music transition
+ IEnumerator FadeOutMusic()
+    {
+        float timeElapsed = 0;
+        float duration = 2f;
+        float startVolume = introMusic.volume;
+
+        while (timeElapsed < duration)
+        {
+            timeElapsed += Time.deltaTime;
+            float t = timeElapsed / duration;
+            introMusic.volume = Mathf.Lerp(startVolume, 0f, t);
+            yield return null;
+        }
+
+        introMusic.Stop();
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (!musicHasChanged && introMusic != null)
+        {
+                StartCoroutine(FadeOutMusic());
+                musicHasChanged = true;
+        }
         // Check each boolean and set the corresponding GameObject active or inactive
         if (FinalMessageScript.turnA)
         {
