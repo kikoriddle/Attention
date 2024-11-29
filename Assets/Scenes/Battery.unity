@@ -1253,7 +1253,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mainCamera: {fileID: 875610760}
-  zoomInSize: 5
+  zoomInSize: 3
   zoomOutSize: 7.94
   zoomSpeed: 2
 --- !u!1 &926308624
