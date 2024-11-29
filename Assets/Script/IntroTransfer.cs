@@ -11,6 +11,8 @@ public class IntroTransfer : MonoBehaviour
     public GameObject object5;
     public GameObject object6;
 
+    public GameObject object7;
+
     public GameObject transitionObject; // The GameObject used for the transition effect
 
     private int currentIndex = 0;
@@ -45,10 +47,11 @@ public class IntroTransfer : MonoBehaviour
             case 3: object4.SetActive(false); break;
             case 4: object5.SetActive(false); break;
             case 5: object6.SetActive(false); break;
+            case 6: object7.SetActive(false); break;
         }
 
         // Move to the next object
-        currentIndex = (currentIndex + 1) % 6; // Wrap around after 6 objects
+        currentIndex = (currentIndex + 1) % 7; // Wrap around after 6 objects
 
         // Turn on the next object based on the new index
         switch (currentIndex)
@@ -59,10 +62,11 @@ public class IntroTransfer : MonoBehaviour
             case 3: object4.SetActive(true); break;
             case 4: object5.SetActive(true); break;
             case 5: object6.SetActive(true); break;
+            case 6: object7.SetActive(true); break;
         }
 
         // If it's the last object, start the fade-out animation and then load the scene
-        if (currentIndex == 5) // The last object is at index 5
+        if (currentIndex == 6) // The last object is at index 5
         {
             // Start the fade-out effect using the transition object
             if (transitionObject != null)

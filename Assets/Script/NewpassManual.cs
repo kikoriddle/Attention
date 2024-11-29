@@ -16,7 +16,7 @@ public class NewpassManual : MonoBehaviour
     [Header("Password Requirements")]
     private const int MIN_LENGTH = 8;
     private const int MIN_NUMBERS = 1;
-    private const int MIN_UPPERCASE = 1;
+    //private const int MIN_UPPERCASE = 1;
     private const int MIN_SPECIAL_CHARS = 1;
     private readonly string specialCharacters = "!@#$%^&*()_+-=[]{}|;:,.<>?";
 
@@ -85,9 +85,6 @@ public class NewpassManual : MonoBehaviour
             if (char.IsUpper(c))
                 uppercaseCount++;
         }
-        if (uppercaseCount < MIN_UPPERCASE)
-            return (false, "Password must contain at least one uppercase letter");
-
         // Count special characters
         int specialCharCount = 0;
         foreach (char c in password)

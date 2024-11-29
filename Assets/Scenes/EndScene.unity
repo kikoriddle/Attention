@@ -755,7 +755,7 @@ MonoBehaviour:
   setSayDialog: {fileID: 0}
 --- !u!114 &357971131
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -1421,7 +1421,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 67
     y: 70
-    width: 113.33333
+    width: 118
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -1450,11 +1450,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   version: 1
-  scrollPos: {x: 592.1666, y: 25.833344}
+  scrollPos: {x: 1073.6665, y: 853.8333}
   variablesScrollPos: {x: 0, y: 0}
   variablesExpanded: 1
   blockViewHeight: 400
-  zoom: 1
+  zoom: 0.25
   scrollViewRect:
     serializedVersion: 2
     x: -343
@@ -1463,8 +1463,7 @@ MonoBehaviour:
     height: 859
   selectedBlocks:
   - {fileID: 1695079139}
-  selectedCommands:
-  - {fileID: 1695079144}
+  selectedCommands: []
   variables: []
   description: 
   stepPause: 0
@@ -1547,7 +1546,7 @@ MonoBehaviour:
   setSayDialog: {fileID: 0}
 --- !u!114 &1695079144
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -1828,7 +1827,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61dddfdc5e0e44ca298d8f46f7f5a915, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selectedFlowchart: {fileID: 2091509680}
+  selectedFlowchart: {fileID: 1695079140}
 --- !u!4 &1941568759
 Transform:
   m_ObjectHideFlags: 1
@@ -2082,7 +2081,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2091509688
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
