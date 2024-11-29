@@ -198,6 +198,8 @@ public class CamScriptForFinal : MonoBehaviour
     {
         isAnimationPlaying = true;
 
+        if (transitionSound != null) transitionSound.Play();
+
         if (animationObject != null)
         {
             animationObject.SetActive(true);
