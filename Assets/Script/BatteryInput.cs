@@ -29,10 +29,12 @@ public class BatteryInput : MonoBehaviour
 
     private int animationsPlayedCount = 0; // Tracks the number of animations played
 
-    public string sceneName = "01 Main Window"; // Scene to switch to for the next scene
+    public string sceneName = "Photo Albumn"; // Scene to switch to for the next scene
+    public static bool changePh;
 
     void Start()
     {
+        changePh = false;
         batteryActivate = true;
 
         // Ensure buttons are initially inactive
@@ -158,6 +160,7 @@ public class BatteryInput : MonoBehaviour
 
     private IEnumerator LoadSceneAsync(string sceneName)
     {
+        changePh = true;
         // Start loading the scene in the background
         AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(sceneName);
 
@@ -181,6 +184,8 @@ public class BatteryInput : MonoBehaviour
         {
             animationObject.SetActive(false);
         }
+
+        
 
         Debug.Log($"Scene {sceneName} loaded and transition complete.");
     }

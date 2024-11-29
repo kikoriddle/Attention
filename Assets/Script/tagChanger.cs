@@ -5,6 +5,7 @@ using UnityEngine;
 public class tagChanger : MonoBehaviour
 {
     public GameObject targetObject; // The GameObject whose tag we want to change
+    public GameObject targetObject2;
 
     void Start()
     {
@@ -26,5 +27,13 @@ public class tagChanger : MonoBehaviour
 
             
         }
+        if (BatteryInput.changePh)
+        {
+            // Change the tag of the target object to "Message 1"
+            targetObject2.tag = "Photo Albumn";
+            Debug.Log($"Tag of {targetObject.name} changed to 'Photo Albumn'");
+
+        }
+
     }
 }

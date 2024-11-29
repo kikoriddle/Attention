@@ -10,6 +10,7 @@ TagManager:
   - 02 INS LogIn
   - Battery
   - Message 1
+  - Photo Albumn
   layers:
   - Default
   - TransparentFX
