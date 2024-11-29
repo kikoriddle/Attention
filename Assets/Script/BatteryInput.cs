@@ -10,13 +10,17 @@ public class BatteryInput : MonoBehaviour
     public Button button3; // Assign Button 3 in the Inspector
     public Button nextSceneButton; // Button for transitioning to the next scene
 
-    private GameObject battery1; // First battery object
-    private GameObject battery2; // Second battery object
-    private GameObject battery3; // Third battery object
+    public Animator animator1; // Animator for object1
+    public Animator animator2; // Animator for object2
+    public Animator animator3; // Animator for object3
 
-    public Animator animator1; // Animator for battery1
-    public Animator animator2; // Animator for battery2
-    public Animator animator3; // Animator for battery3
+    public GameObject objectA; // Original GameObject 1
+    public GameObject objectB; // Original GameObject 2
+    public GameObject objectC; // Original GameObject 3
+
+    public GameObject newObjectA; // New GameObject 1 to turn on
+    public GameObject newObjectB; // New GameObject 2 to turn on
+    public GameObject newObjectC; // New GameObject 3 to turn on
 
     public GameObject rewardObject; // The game object to activate when all animations are played
     public GameObject animationObject; // GameObject with fade-out animation for the button
@@ -29,7 +33,7 @@ public class BatteryInput : MonoBehaviour
 
     private int animationsPlayedCount = 0; // Tracks the number of animations played
 
-    public string sceneName = "Photo Albumn"; // Scene to switch to for the next scene
+    public string sceneName = "Photo Album"; // Scene to switch to for the next scene
     public static bool changePh;
 
     void Start()
@@ -46,19 +50,20 @@ public class BatteryInput : MonoBehaviour
         if (rewardObject != null) rewardObject.SetActive(false);
         if (animationObject != null) animationObject.SetActive(false);
 
-        // Assign click listeners to buttons
-        if (button1 != null) button1.onClick.AddListener(PlayBattery1Animation);
-        if (button2 != null) button2.onClick.AddListener(PlayBattery2Animation);
-        if (button3 != null) button3.onClick.AddListener(PlayBattery3Animation);
+        // Ensure new objects are initially inactive
+        if (newObjectA != null) newObjectA.SetActive(false);
+        if (newObjectB != null) newObjectB.SetActive(false);
+        if (newObjectC != null) newObjectC.SetActive(false);
+
+        // Re-assign button listeners
+        if (button1 != null) button1.onClick.AddListener(() => PlayBatteryAnimation(animator1));
+        if (button2 != null) button2.onClick.AddListener(() => PlayBatteryAnimation(animator2));
+        if (button3 != null) button3.onClick.AddListener(() => PlayBatteryAnimation(animator3));
         if (nextSceneButton != null) nextSceneButton.onClick.AddListener(SwitchScene);
     }
 
     void Update()
     {
-        battery1 = GameObject.Find("battery1");
-        battery2 = GameObject.Find("battery2");
-        battery3 = GameObject.Find("battery3");
-
         // Check if the fullyCollected boolean from the Battery script is true
         if (Battery.fullyCollected)
         {
@@ -70,6 +75,12 @@ public class BatteryInput : MonoBehaviour
         {
             ActivateRewardObject();
         }
+
+        // Update sprites as long as the reward object is active
+        if (rewardObject != null && rewardObject.activeSelf)
+        {
+            ToggleObjects(); // Handle turning on/off of new and original objects
+        }
     }
 
     private void ActivateButtons()
@@ -78,7 +89,7 @@ public class BatteryInput : MonoBehaviour
         if (button2 != null) button2.gameObject.SetActive(true);
         if (button3 != null) button3.gameObject.SetActive(true);
 
-        Debug.Log("Buttons activated because all batteries are collected!");
+        Debug.Log("Buttons activated because all animations are collected!");
     }
 
     private void ActivateRewardObject()
@@ -91,47 +102,41 @@ public class BatteryInput : MonoBehaviour
         }
     }
 
-    public void PlayBattery1Animation()
+    private void ToggleObjects()
     {
-        PlayAndDestroyBattery(battery1, animator1);
+        // Turn off original objects
+        if (objectA != null) objectA.SetActive(false);
+        if (objectB != null) objectB.SetActive(false);
+        if (objectC != null) objectC.SetActive(false);
+
+        // Turn on new objects
+        if (newObjectA != null) newObjectA.SetActive(true);
+        if (newObjectB != null) newObjectB.SetActive(true);
+        if (newObjectC != null) newObjectC.SetActive(true);
+
+        Debug.Log("New objects are now active, and original objects are turned off.");
     }
 
-    public void PlayBattery2Animation()
+    public void PlayBatteryAnimation(Animator animator)
     {
-        PlayAndDestroyBattery(battery2, animator2);
-    }
-
-    public void PlayBattery3Animation()
-    {
-        PlayAndDestroyBattery(battery3, animator3);
-    }
-
-    private void PlayAndDestroyBattery(GameObject battery, Animator animator)
-    {
-        if (battery != null && animator != null)
+        if (animator != null)
         {
             animator.SetBool("canPlay", true); // Trigger the animation
-            Debug.Log($"Playing animation for {battery.name}");
-            StartCoroutine(DestroyBatteryAfterAnimation(battery, animator));
+            Debug.Log($"Playing animation for {animator.gameObject.name}");
+            StartCoroutine(DestroyBatteryAfterAnimation(animator));
         }
         else
         {
-            Debug.LogError("Battery or Animator is null!");
+            Debug.LogError("Animator is null!");
         }
     }
 
-    private IEnumerator DestroyBatteryAfterAnimation(GameObject battery, Animator animator)
+    private IEnumerator DestroyBatteryAfterAnimation(Animator animator)
     {
         if (animator != null)
         {
             AnimatorStateInfo animationState = animator.GetCurrentAnimatorStateInfo(0);
             yield return new WaitForSeconds(animationState.length); // Wait for the animation to complete
-        }
-
-        if (battery != null)
-        {
-            Destroy(battery); // Destroy the battery object
-            Debug.Log($"{battery.name} destroyed.");
         }
 
         animationsPlayedCount++;
@@ -184,8 +189,6 @@ public class BatteryInput : MonoBehaviour
         {
             animationObject.SetActive(false);
         }
-
-        
 
         Debug.Log($"Scene {sceneName} loaded and transition complete.");
     }

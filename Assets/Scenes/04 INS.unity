@@ -1047,7 +1047,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c5f99bfbf25fbc4a989cd8c2c3a3216, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseSensitivity: 0.8
+  baseSensitivity: 0.67
   fpsReference: 60
 --- !u!1 &237139824
 GameObject:
@@ -2597,7 +2597,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c5f99bfbf25fbc4a989cd8c2c3a3216, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseSensitivity: 0.8
+  baseSensitivity: 0.67
   fpsReference: 60
 --- !u!1 &579723893
 GameObject:
@@ -5444,7 +5444,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c5f99bfbf25fbc4a989cd8c2c3a3216, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseSensitivity: 0.8
+  baseSensitivity: 0.67
   fpsReference: 60
 --- !u!1 &1000119097
 GameObject:
@@ -7673,7 +7673,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c5f99bfbf25fbc4a989cd8c2c3a3216, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseSensitivity: 0.8
+  baseSensitivity: 0.67
   fpsReference: 60
 --- !u!1 &1580971725
 GameObject:

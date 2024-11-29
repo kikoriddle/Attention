@@ -4,7 +4,7 @@ using UnityEngine.UI;
 [RequireComponent(typeof(ScrollRect))]
 public class DynamicScrollSensitivity : MonoBehaviour
 {
-    public float baseSensitivity = 10f; // Default sensitivity
+    public float baseSensitivity = 0.67f; // Default sensitivity
     public float fpsReference = 60f; // Reference FPS for normal sensitivity
     private ScrollRect scrollRect;
 
