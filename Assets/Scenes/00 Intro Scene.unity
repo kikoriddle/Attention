@@ -1858,8 +1858,9 @@ MonoBehaviour:
   object2: {fileID: 1970672151}
   object3: {fileID: 1072125185}
   object4: {fileID: 411301980}
-  object5: {fileID: 33311550}
-  object6: {fileID: 1611277735}
+  object5: {fileID: 2106229853}
+  object6: {fileID: 33311550}
+  object7: {fileID: 1611277735}
   transitionObject: {fileID: 1100417917}
 --- !u!4 &1200106184
 Transform:
@@ -2082,7 +2083,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!95 &1809270307
 Animator:
   serializedVersion: 5
