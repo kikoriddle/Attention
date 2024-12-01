@@ -8,31 +8,24 @@ public class Battery : MonoBehaviour
 
     private bool isClicked = false; // Ensures the object is clicked only once
     public Animator animator;
-    public static Animator GlobalAnimator;  // Reference to an external Animator component
+    // public static Animator GlobalAnimator;  // Reference to an external Animator component
     private SpriteRenderer spriteRenderer; // Reference to the SpriteRenderer component
 
     void Start()
     {
-        // Ensure the GameObject has a 2D Collider
         if (GetComponent<Collider2D>() == null)
         {
             Debug.LogError($"GameObject {gameObject.name} does not have a 2D Collider! Please add one.");
         }
 
-        // Ensure the animator is assigned in the Inspector
-        if (GlobalAnimator == null)
+        // Check if animator is assigned
+        if (animator == null)
         {
-          GlobalAnimator = animator;
-          Debug.Log("Animator stored globally.");
+            Debug.LogError($"GameObject {gameObject.name} does not have an Animator assigned! Please assign in Inspector.");
         }
-        else
-        {
-           animator = GlobalAnimator; // Reassign the Animator if it already exists
-        }
+
         // Get the SpriteRenderer component
         spriteRenderer = GetComponent<SpriteRenderer>();
-
-        // Ensure the SpriteRenderer component is attached
         if (spriteRenderer == null)
         {
             Debug.LogError($"GameObject {gameObject.name} does not have a SpriteRenderer component! Please add one.");
@@ -51,8 +44,13 @@ public class Battery : MonoBehaviour
             // Trigger the animation by setting the playB parameter to true
             if (animator != null)
             {
+                Debug.Log($"Animator found on {gameObject.name}");
                 animator.SetBool("playB", true); // Set the external Animator's playB parameter
                 Debug.Log("Triggered animation on external Animator.");
+            }
+            else
+            {
+                Debug.Log($"No animator found on {gameObject.name}!");
             }
 
             // Start coroutine to turn off the sprite renderer after the animation plays

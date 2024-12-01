@@ -48,6 +48,7 @@ public class ScrollTracker : MonoBehaviour
         // Check if scrollRect1 has reached the bottom and activate message1
         if (!IsMessage1Activated && CheckScrollAtEnd(scrollRect1))
         {
+            Debug.Log("Message sound coming out");
             AudioSource.PlayClipAtPoint(popupSound, Camera.main.transform.position, 0.5f);
             ActivateMessage(message1, "Message1Activated", ref IsMessage1Activated);
         }
@@ -55,6 +56,7 @@ public class ScrollTracker : MonoBehaviour
         // Check if scrollRect2 has reached the bottom and activate message2
         if (!IsMessage2Activated && CheckScrollAtEnd(scrollRect2))
         {
+            Debug.Log("Message sound coming out");
             AudioSource.PlayClipAtPoint(popupSound, Camera.main.transform.position, 0.5f);
             ActivateMessage(message2, "Message2Activated", ref IsMessage2Activated);
         }

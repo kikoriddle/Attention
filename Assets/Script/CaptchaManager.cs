@@ -23,9 +23,11 @@ public class CaptcahManager : MonoBehaviour
         ericm1 = true;
 
         // Check and activate ericGameObject if not already activated
-        if (!ericm1 && ericGameObject != null)
+        if (ericm1 && ericGameObject != null)
         {
             ericGameObject.SetActive(true);
+            //add sound
+            Debug.Log("message pop out sound is coming out");
             AudioSource.PlayClipAtPoint(popupSound, Camera.main.transform.position, 0.5f);
             StartCoroutine(DeactivateEricGameObjectAfterTime());
         }

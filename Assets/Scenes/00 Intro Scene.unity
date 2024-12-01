@@ -1815,7 +1815,7 @@ AudioSource:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 801942045}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
@@ -1933,7 +1933,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   volume: 1
-  loop: 1
+  loop: 0
   targetAudioSource: {fileID: 0}
   audioMode: 0
   beepSounds:
@@ -1941,7 +1941,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: f637c5ce9d10e45c7855ed89bfc6b97e, type: 3}
   - {fileID: 8300000, guid: c53b7c20372e444c6bd7f2ac0729bbe2, type: 3}
   soundEffect: {fileID: 0}
-  inputSound: {fileID: 8300000, guid: 14a396b1562834718b2d52b9c4639264, type: 3}
+  inputSound: {fileID: 8300000, guid: 760bf31790eab094da5692f9917702f0, type: 3}
 --- !u!114 &801942049
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2722,7 +2722,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 67
     y: 70
-    width: 113.33333
+    width: 111
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -3296,7 +3296,7 @@ MonoBehaviour:
   delay: 3
 --- !u!114 &1110726547
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -3308,12 +3308,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 33
   indentLevel: 0
-  soundClip: {fileID: 8300000, guid: 740d4e8182c4b428cb3595c8f81868ea, type: 3}
-  volume: 1
+  soundClip: {fileID: 8300000, guid: 760bf31790eab094da5692f9917702f0, type: 3}
+  volume: 0.4
   waitUntilFinished: 0
 --- !u!114 &1110726548
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -3325,12 +3325,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 32
   indentLevel: 0
-  soundClip: {fileID: 8300000, guid: 740d4e8182c4b428cb3595c8f81868ea, type: 3}
-  volume: 1
+  soundClip: {fileID: 8300000, guid: 760bf31790eab094da5692f9917702f0, type: 3}
+  volume: 0.4
   waitUntilFinished: 0
 --- !u!114 &1110726549
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -3342,12 +3342,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 31
   indentLevel: 0
-  soundClip: {fileID: 8300000, guid: 740d4e8182c4b428cb3595c8f81868ea, type: 3}
-  volume: 1
+  soundClip: {fileID: 8300000, guid: 760bf31790eab094da5692f9917702f0, type: 3}
+  volume: 0.4
   waitUntilFinished: 0
 --- !u!114 &1110726550
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -3359,12 +3359,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 30
   indentLevel: 0
-  soundClip: {fileID: 8300000, guid: 740d4e8182c4b428cb3595c8f81868ea, type: 3}
-  volume: 1
+  soundClip: {fileID: 8300000, guid: 760bf31790eab094da5692f9917702f0, type: 3}
+  volume: 0.4
   waitUntilFinished: 0
 --- !u!114 &1110726551
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -3376,12 +3376,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 29
   indentLevel: 0
-  soundClip: {fileID: 8300000, guid: 740d4e8182c4b428cb3595c8f81868ea, type: 3}
-  volume: 1
+  soundClip: {fileID: 8300000, guid: 760bf31790eab094da5692f9917702f0, type: 3}
+  volume: 0.4
   waitUntilFinished: 0
 --- !u!114 &1110726552
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -3393,12 +3393,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 28
   indentLevel: 0
-  soundClip: {fileID: 8300000, guid: 740d4e8182c4b428cb3595c8f81868ea, type: 3}
-  volume: 1
+  soundClip: {fileID: 8300000, guid: 760bf31790eab094da5692f9917702f0, type: 3}
+  volume: 0.4
   waitUntilFinished: 0
 --- !u!114 &1110726553
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -3410,8 +3410,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 27
   indentLevel: 0
-  soundClip: {fileID: 8300000, guid: 740d4e8182c4b428cb3595c8f81868ea, type: 3}
-  volume: 1
+  soundClip: {fileID: 8300000, guid: 760bf31790eab094da5692f9917702f0, type: 3}
+  volume: 0.4
   waitUntilFinished: 0
 --- !u!1 &1123026764
 GameObject:
