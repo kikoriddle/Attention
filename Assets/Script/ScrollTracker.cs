@@ -15,6 +15,9 @@ public class ScrollTracker : MonoBehaviour
 
     private static bool hasResetPlayerPrefs = false; // Ensures PlayerPrefs reset only once
 
+    //sound
+    public AudioClip popupSound;
+
     void Start()
     {
         // Reset PlayerPrefs only once per game session
@@ -45,12 +48,14 @@ public class ScrollTracker : MonoBehaviour
         // Check if scrollRect1 has reached the bottom and activate message1
         if (!IsMessage1Activated && CheckScrollAtEnd(scrollRect1))
         {
+            AudioSource.PlayClipAtPoint(popupSound, Camera.main.transform.position, 0.5f);
             ActivateMessage(message1, "Message1Activated", ref IsMessage1Activated);
         }
 
         // Check if scrollRect2 has reached the bottom and activate message2
         if (!IsMessage2Activated && CheckScrollAtEnd(scrollRect2))
         {
+            AudioSource.PlayClipAtPoint(popupSound, Camera.main.transform.position, 0.5f);
             ActivateMessage(message2, "Message2Activated", ref IsMessage2Activated);
         }
     }

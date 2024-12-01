@@ -674,6 +674,7 @@ MonoBehaviour:
   - {fileID: 139531133}
   verifyButton: {fileID: 1990270039}
   transitionAnimator: {fileID: 1145883358}
+  popupSound: {fileID: 8300000, guid: 3562590f72258494a8c8cec52df0ab47, type: 3}
   ericGameObject: {fileID: 1878746210}
 --- !u!114 &545464071
 MonoBehaviour:

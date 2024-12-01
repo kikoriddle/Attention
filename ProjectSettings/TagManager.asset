@@ -11,6 +11,8 @@ TagManager:
   - Battery
   - Message 1
   - Photo Albumn
+  - Laser
+  - Enemy
   layers:
   - Default
   - TransparentFX

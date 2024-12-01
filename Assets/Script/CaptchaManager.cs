@@ -11,6 +11,7 @@ public class CaptcahManager : MonoBehaviour
     public Animator transitionAnimator;
 
     private bool[] selectedImages = new bool[9];
+    public AudioClip popupSound;
 
     // New variables for `ericm1` functionality
     public GameObject ericGameObject; // GameObject to activate
@@ -24,6 +25,7 @@ public class CaptcahManager : MonoBehaviour
         if (!ericm1 && ericGameObject != null)
         {
             ericGameObject.SetActive(true);
+            AudioSource.PlayClipAtPoint(popupSound, Camera.main.transform.position, 0.5f);
             StartCoroutine(DeactivateEricGameObjectAfterTime());
         }
 

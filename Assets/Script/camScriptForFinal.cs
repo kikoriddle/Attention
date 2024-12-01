@@ -34,6 +34,8 @@ public class CamScriptForFinal : MonoBehaviour
     private static bool finalObjectsActivated = false; // Tracks if final objects have been activated
     private bool isAnimationPlaying = false; // Tracks if animation is currently playing
 
+    //sound
+    public AudioClip popupSound;
     void Start()
     {
         changeTag = false;
@@ -127,6 +129,7 @@ public class CamScriptForFinal : MonoBehaviour
             if (!alexFinalActivated && alexFinal != null)
             {
                 alexFinal.SetActive(true);
+                AudioSource.PlayClipAtPoint(popupSound, Camera.main.transform.position, 0.5f);
                 alexFinalActivated = true;
                 PlayerPrefs.SetInt("AlexFinalActivated", 1);
                 PlayerPrefs.Save();
@@ -135,6 +138,7 @@ public class CamScriptForFinal : MonoBehaviour
             if (!ericFinalActivated && ericFinal != null)
             {
                 ericFinal.SetActive(true);
+                AudioSource.PlayClipAtPoint(popupSound, Camera.main.transform.position, 0.5f);
                 ericFinalActivated = true;
                 PlayerPrefs.SetInt("EricFinalActivated", 1);
                 PlayerPrefs.Save();

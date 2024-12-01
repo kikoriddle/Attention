@@ -5038,6 +5038,7 @@ MonoBehaviour:
   scrollRect2: {fileID: 230897749}
   message1: {fileID: 1728035243}
   message2: {fileID: 310620168}
+  popupSound: {fileID: 8300000, guid: 3562590f72258494a8c8cec52df0ab47, type: 3}
 --- !u!1 &920128072
 GameObject:
   m_ObjectHideFlags: 0

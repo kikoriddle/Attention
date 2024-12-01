@@ -25,6 +25,9 @@ public class LogInManager : MonoBehaviour
 
     private string nextSceneName;
 
+    //music
+    public AudioClip popupSound;
+
     // Static booleans for tracking
     public static bool HasLoggedInBefore { get; private set; }
 
@@ -61,6 +64,7 @@ public class LogInManager : MonoBehaviour
             if (alexGameObject != null)
             {
                 alexGameObject.SetActive(true); // Activate alexGameObject only the first time
+                AudioSource.PlayClipAtPoint(popupSound, Camera.main.transform.position, 0.5f);
                 alex1turnOn = true; 
                 StartCoroutine(DestroyAlexGameObject());
             }
