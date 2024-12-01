@@ -10,13 +10,13 @@ public class backgroundManager : MonoBehaviour
     //fade out last music
     public AudioSource lastMusic;
     public string backgroundMusicName = "IntromusicManager";
+
     private void Start()
     {
         AudioSource[] allAudio = FindObjectsOfType<AudioSource>();
         foreach (AudioSource audio in allAudio)
         {
-            if (audio.gameObject.scene.name == "DontDestroyOnLoad" &&
-                audio.gameObject.name == backgroundMusicName)
+            if (audio.gameObject.name == backgroundMusicName)
             {
                 lastMusic = audio;
                 Debug.Log("Found background music: " + audio.gameObject.name);
@@ -24,11 +24,24 @@ public class backgroundManager : MonoBehaviour
             }
         }
 
-        StartCoroutine(FadeOutMusic());
+        if (lastMusic != null)
+        {
+            StartCoroutine(FadeOutMusic());
+        }
+        else
+        {
+            Debug.LogWarning("No matching background music found with name: " + backgroundMusicName);
+        }
     }
 
     IEnumerator FadeOutMusic()
     {
+        if (lastMusic == null)
+        {
+            Debug.LogError("lastMusic is null. Cannot fade out music.");
+            yield break;
+        }
+
         float timeElapsed = 0;
         float duration = 2f;
         float startVolume = lastMusic.volume;
@@ -46,23 +59,18 @@ public class backgroundManager : MonoBehaviour
 
     void Awake()
     {
-        // Check if another instance exists
         if (instance == null)
         {
-            // First time - make this the instance
             instance = this;
-            DontDestroyOnLoad(gameObject); // This keeps it alive between scenes
+            DontDestroyOnLoad(gameObject);
             audioSource = GetComponent<AudioSource>();
         }
         else
         {
-            // Instance already exists - destroy duplicate
             Destroy(gameObject);
         }
     }
 
-    // Optional: Add volume control
-    //for later i think
     public void SetVolume(float volume)
     {
         if (audioSource != null)
@@ -70,5 +78,4 @@ public class backgroundManager : MonoBehaviour
             audioSource.volume = volume;
         }
     }
-
 }
