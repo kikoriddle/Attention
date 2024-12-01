@@ -1,58 +1,54 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI; // Import UI namespace for buttons
+using UnityEngine.UI;
 using System.Collections;
 
 public class FinalMessageScript : MonoBehaviour
 {
-    // Four GameObjects for Alex and Eric (two for each)
+    // GameObjects for Alex and Eric (two for each)
     public GameObject alexObjectY;
     public GameObject alexObjectB;
     public GameObject ericObjectY;
     public GameObject ericObjectB;
 
-    // New GameObjects for Alex and Eric (to show when their buttons are clicked)
+    // GameObjects to show when buttons are clicked
     public GameObject alexGameObject;
     public GameObject ericGameObject;
 
-    // Buttons for the UI
+    // UI Buttons
     public Button alexButtonY;
     public Button alexButtonB;
     public Button ericButtonY;
     public Button ericButtonB;
 
-    // Flags to track if the animations have been played
+    // Animation play flags
     private bool alexYPlayed = false;
     private bool alexBPlayed = false;
     private bool ericYPlayed = false;
     private bool ericBPlayed = false;
 
-    // Transition GameObject for fade animation (e.g., a UI Panel or Image)
+    // Transition GameObject for fade animation
     public GameObject transitionObject;
 
-    // Static booleans for the combinations
+    // Static booleans for combinations
     public static bool turnA = false;
     public static bool turnB = false;
     public static bool turnC = false;
     public static bool turnD = false;
 
-    // Start is called before the first frame update
     void Start()
     {
-        // Ensure all game objects are initially inactive
+        // Initial state setup
         alexObjectY.SetActive(false);
         alexObjectB.SetActive(false);
         ericObjectY.SetActive(false);
         ericObjectB.SetActive(false);
 
-        // Ensure the transition object is initially inactive
         transitionObject.SetActive(false);
-
-        // Ensure Alex and Eric GameObjects are initially inactive
         alexGameObject.SetActive(false);
         ericGameObject.SetActive(false);
 
-        // Add listeners for button clicks
+        // Assign button listeners
         alexButtonY.onClick.AddListener(ActivateAlexObjectY);
         alexButtonB.onClick.AddListener(ActivateAlexObjectB);
         ericButtonY.onClick.AddListener(ActivateEricObjectY);
@@ -61,149 +57,105 @@ public class FinalMessageScript : MonoBehaviour
 
     void Update()
     {
-        // Check if the "R" key is pressed to trigger the transition animation
+        // Trigger transition animation with "R" key
         if (Input.GetKeyDown(KeyCode.R))
         {
             StartCoroutine(PlayTransitionAnimation());
         }
     }
 
-    // Method to activate Alex's Y object and play its animation
     void ActivateAlexObjectY()
     {
-        alexObjectY.SetActive(true);  // Activate the Alex Y object
+        alexObjectY.SetActive(true);
         StartCoroutine(PlayAnimation(alexObjectY, "AlexY"));
-
-        // Disable Alex's buttons and activate his game object
         alexButtonY.interactable = false;
         alexButtonB.interactable = false;
-        alexGameObject.SetActive(true);  // Show Alex's GameObject
+        alexGameObject.SetActive(true);
     }
 
-    // Method to activate Alex's B object and play its animation
     void ActivateAlexObjectB()
     {
-        alexObjectB.SetActive(true);  // Activate the Alex B object
+        alexObjectB.SetActive(true);
         StartCoroutine(PlayAnimation(alexObjectB, "AlexB"));
-
-        // Disable Alex's buttons and activate his game object
         alexButtonY.interactable = false;
         alexButtonB.interactable = false;
-        alexGameObject.SetActive(true);  // Show Alex's GameObject
+        alexGameObject.SetActive(true);
     }
 
-    // Method to activate Eric's Y object and play its animation
     void ActivateEricObjectY()
     {
-        ericObjectY.SetActive(true);  // Activate the Eric Y object
+        ericObjectY.SetActive(true);
+        HandleParentScrollView(ericObjectY);
         StartCoroutine(PlayAnimation(ericObjectY, "EricY"));
-
-        // Disable Eric's buttons and activate his game object
         ericButtonY.interactable = false;
         ericButtonB.interactable = false;
-        ericGameObject.SetActive(true);  // Show Eric's GameObject
+        ericGameObject.SetActive(true);
     }
 
-    // Method to activate Eric's B object and play its animation
     void ActivateEricObjectB()
     {
-        ericObjectB.SetActive(true);  // Activate the Eric B object
+        ericObjectB.SetActive(true);
+        HandleParentScrollView(ericObjectB);
         StartCoroutine(PlayAnimation(ericObjectB, "EricB"));
-
-        // Disable Eric's buttons and activate his game object
         ericButtonY.interactable = false;
         ericButtonB.interactable = false;
-        ericGameObject.SetActive(true);  // Show Eric's GameObject
+        ericGameObject.SetActive(true);
     }
 
-    // Coroutine to play the animation of the object
     IEnumerator PlayAnimation(GameObject obj, string animationType)
     {
-        // Get the Animator component attached to the object
         Animator animator = obj.GetComponent<Animator>();
         if (animator != null)
         {
-            // Play the animation (assuming each object has a single animation)
-            animator.SetTrigger("canPlay");  // Assuming "Play" is the trigger for the animation
-
-            // Wait for the animation to finish
+            animator.SetTrigger("canPlay");
             AnimatorClipInfo[] clips = animator.GetCurrentAnimatorClipInfo(0);
             if (clips.Length > 0)
             {
                 yield return new WaitForSeconds(clips[0].clip.length);
             }
         }
-
-        // Update the flags based on which object was activated
-        if (animationType == "AlexY")
+        else
         {
-            alexYPlayed = true;
-        }
-        else if (animationType == "AlexB")
-        {
-            alexBPlayed = true;
-        }
-        else if (animationType == "EricY")
-        {
-            ericYPlayed = true;
-        }
-        else if (animationType == "EricB")
-        {
-            ericBPlayed = true;
+            Debug.LogWarning("Animator component not found on the object.");
         }
 
-        // Update the static booleans based on the combination of button presses
+        UpdateFlags(animationType);
         UpdateBooleanFlags();
-
-        // Check if the condition for switching the scene is met
         CheckAndSwitchScene();
     }
 
-    // Method to update the static booleans based on the combination of button presses
-    void UpdateBooleanFlags()
+    void UpdateFlags(string animationType)
     {
-        // Set the static booleans based on the combinations of Alex and Eric choices
-        if (alexYPlayed && ericYPlayed)
-        {
-            turnA = true; // Combination of AlexY and EricY
-        }
-        else if (alexYPlayed && ericBPlayed)
-        {
-            turnB = true; // Combination of AlexY and EricB
-        }
-        else if (alexBPlayed && ericYPlayed)
-        {
-            turnC = true; // Combination of AlexB and EricY
-        }
-        else if (alexBPlayed && ericBPlayed)
-        {
-            turnD = true; // Combination of AlexB and EricB
-        }
+        if (animationType == "AlexY") alexYPlayed = true;
+        else if (animationType == "AlexB") alexBPlayed = true;
+        else if (animationType == "EricY") ericYPlayed = true;
+        else if (animationType == "EricB") ericBPlayed = true;
     }
 
-    // Method to check if the condition for switching the scene is met
+    void UpdateBooleanFlags()
+    {
+        if (alexYPlayed && ericYPlayed) turnA = true;
+        else if (alexYPlayed && ericBPlayed) turnB = true;
+        else if (alexBPlayed && ericYPlayed) turnC = true;
+        else if (alexBPlayed && ericBPlayed) turnD = true;
+    }
+
     void CheckAndSwitchScene()
     {
-        // If one Alex object and one Eric object has played, proceed to the next scene
         if ((alexYPlayed || alexBPlayed) && (ericYPlayed || ericBPlayed))
         {
             StartCoroutine(PlayTransitionAnimation());
         }
     }
 
-    // Coroutine to play transition animation before switching scene
     IEnumerator PlayTransitionAnimation()
     {
-        // Activate the transition object (fade-in/out animation, for example)
         transitionObject.SetActive(true);
 
-        // Assuming transitionObject has an Animator component with a "FadeOut" trigger to fade out
         Animator transitionAnimator = transitionObject.GetComponent<Animator>();
         if (transitionAnimator != null)
         {
             transitionAnimator.SetTrigger("FadeOut");
-
-            // Wait for the fade-out animation to finish
             AnimatorClipInfo[] clips = transitionAnimator.GetCurrentAnimatorClipInfo(0);
             if (clips.Length > 0)
             {
@@ -211,7 +163,28 @@ public class FinalMessageScript : MonoBehaviour
             }
         }
 
-        // After the transition, load the next scene
-        SceneManager.LoadScene("EndScene");  // Replace "EndScene" with your actual scene name
+        SceneManager.LoadScene("EndScene");
+    }
+
+    void HandleParentScrollView(GameObject obj)
+    {
+        Transform parentParentParent = obj.transform.parent?.parent?.parent;
+        if (parentParentParent != null)
+        {
+            ScrollRect scrollView = parentParentParent.GetComponent<ScrollRect>();
+            if (scrollView != null)
+            {
+                scrollView.enabled = false;
+                Debug.Log($"ScrollRect on {parentParentParent.name} has been disabled.");
+            }
+            else
+            {
+                Debug.LogWarning($"No ScrollRect component found on parent's parent's parent object {parentParentParent.name}.");
+            }
+        }
+        else
+        {
+            Debug.LogWarning("Animator's parent's parent's parent object is null.");
+        }
     }
 }
