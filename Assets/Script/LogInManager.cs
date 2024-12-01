@@ -154,14 +154,16 @@ public class LogInManager : MonoBehaviour
             GameObject animationObject = transitionAnimator.gameObject;
             animationObject.SetActive(true);
 
+            Debug.Log("Animation is playing");
             // Play the animation
             transitionAnimator.Play("AnimationName"); // Replace "AnimationName" with your animation's name
 
             // Wait for the animation to complete
-            yield return new WaitForSeconds(1f); // Adjust this duration to match the animation length
+            float animationLength = transitionAnimator.GetCurrentAnimatorStateInfo(0).length;
+            yield return new WaitForSeconds(animationLength);
 
             // Turn off the animation GameObject
-            animationObject.SetActive(false);
+            //animationObject.SetActive(false);
         }
 
         // Load the next scene
