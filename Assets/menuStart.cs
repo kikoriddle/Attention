@@ -2,23 +2,13 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class IntroTransfer : MonoBehaviour
+public class menuStart : MonoBehaviour
 {
-    public GameObject object1;
-    public GameObject object2;
-    public GameObject object3;
-    public GameObject object4;
-    public GameObject object5;
-    public GameObject object6;
-
-    public GameObject object7;
-
+    public GameObject startButton;
     public GameObject transitionObject; // The GameObject used for the transition effect
 
-    private int currentIndex = 0;
-    private string nextSceneName = "000 Begin"; // Name of the next scene
+    private string nextSceneName = "01 Main Window"; // Name of the next scene
 
- 
     void Start()
     {
         // Ensure the transition object is initially inactive
@@ -28,53 +18,18 @@ public class IntroTransfer : MonoBehaviour
         }
     }
 
-    void Update()
+    void OnMouseDown()
     {
-        // Check for mouse click, spacebar press, or left shift press
-        if (Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.LeftShift))
-        {
-            ToggleObjects();
-        }
+        ToggleObjects();
     }
 
     void ToggleObjects()
     {
-        // Turn off the current object based on the current index
-        switch (currentIndex)
+        if (startButton != null)
         {
-            case 0: object1.SetActive(false); break;
-            case 1: object2.SetActive(false); break;
-            case 2: object3.SetActive(false); break;
-            case 3: object4.SetActive(false); break;
-            case 4: object5.SetActive(false); break;
-            case 5: object6.SetActive(false); break;
-            case 6: object7.SetActive(false); break;
+            Debug.Log("Button Clicked");
         }
-
-        // Move to the next object
-        currentIndex = (currentIndex + 1) % 7; // Wrap around after 6 objects
-
-        // Turn on the next object based on the new index
-        switch (currentIndex)
-        {
-            case 0: object1.SetActive(true); break;
-            case 1: object2.SetActive(true); break;
-            case 2: object3.SetActive(true); break;
-            case 3: object4.SetActive(true); break;
-            case 4: object5.SetActive(true); break;
-            case 5: object6.SetActive(true); break;
-            case 6: object7.SetActive(true); break;
-        }
-
-        // If it's the last object, start the fade-out animation and then load the scene
-        if (currentIndex == 6) // The last object is at index 5
-        {
-            // Start the fade-out effect using the transition object
-            if (transitionObject != null)
-            {
-                StartCoroutine(PlayAnimationAndSwitchScene());
-            }
-        }
+        StartCoroutine(PlayAnimationAndSwitchScene());
     }
 
     // Coroutine for fading out and then switching to the next scene
