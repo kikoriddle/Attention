@@ -181,6 +181,7 @@ public class BatteryInput : MonoBehaviour
     private IEnumerator LoadSceneAsync(string sceneName)
     {
         changePh = true;
+        print("set true");
         // Start loading the scene in the background
         AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(sceneName);
 
