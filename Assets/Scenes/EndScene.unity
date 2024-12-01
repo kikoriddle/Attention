@@ -266,7 +266,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 149195100}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c4782cf42f2644447b9631f6e522160b, type: 3}
   m_Name: 
@@ -276,9 +276,9 @@ MonoBehaviour:
   targetAudioSource: {fileID: 174843863}
   audioMode: 0
   beepSounds:
-  - {fileID: 8300000, guid: 740d4e8182c4b428cb3595c8f81868ea, type: 3}
-  - {fileID: 8300000, guid: 740d4e8182c4b428cb3595c8f81868ea, type: 3}
-  - {fileID: 8300000, guid: 740d4e8182c4b428cb3595c8f81868ea, type: 3}
+  - {fileID: 8300000, guid: c175eefca5b0a104d98c8c5aac2c24a4, type: 3}
+  - {fileID: 8300000, guid: c175eefca5b0a104d98c8c5aac2c24a4, type: 3}
+  - {fileID: 8300000, guid: c175eefca5b0a104d98c8c5aac2c24a4, type: 3}
   soundEffect: {fileID: 0}
   inputSound: {fileID: 8300000, guid: d4631f909fa726d44829a5c67e9f12f2, type: 3}
 --- !u!114 &149195104
@@ -966,7 +966,7 @@ MonoBehaviour:
   nodeRect:
     serializedVersion: 2
     x: 67
-    y: 70
+    y: 59.33333
     width: 113.33333
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
@@ -1015,10 +1015,8 @@ MonoBehaviour:
     y: -340
     width: 1114
     height: 859
-  selectedBlocks:
-  - {fileID: 715163997}
-  selectedCommands:
-  - {fileID: 715164009}
+  selectedBlocks: []
+  selectedCommands: []
   variables: []
   description: 
   stepPause: 0
@@ -1862,7 +1860,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1724242267
 MonoBehaviour:
   m_ObjectHideFlags: 0
