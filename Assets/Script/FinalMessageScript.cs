@@ -124,7 +124,7 @@ public class FinalMessageScript : MonoBehaviour
         if (animator != null)
         {
             // Play the animation (assuming each object has a single animation)
-            animator.SetTrigger("Play");  // Assuming "Play" is the trigger for the animation
+            animator.SetTrigger("canPlay");  // Assuming "Play" is the trigger for the animation
 
             // Wait for the animation to finish
             AnimatorClipInfo[] clips = animator.GetCurrentAnimatorClipInfo(0);
