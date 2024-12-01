@@ -7,8 +7,8 @@ public class Battery : MonoBehaviour
     public static bool fullyCollected = false; // Tracks if all batteries are collected
 
     private bool isClicked = false; // Ensures the object is clicked only once
-
-    public Animator animator; // Reference to an external Animator component
+    public Animator animator;
+    public static Animator GlobalAnimator;  // Reference to an external Animator component
     private SpriteRenderer spriteRenderer; // Reference to the SpriteRenderer component
 
     void Start()
@@ -20,11 +20,15 @@ public class Battery : MonoBehaviour
         }
 
         // Ensure the animator is assigned in the Inspector
-        if (animator == null)
+        if (GlobalAnimator == null)
         {
-            Debug.LogError("Animator is not assigned! Please attach an external Animator in the Inspector.");
+          GlobalAnimator = animator;
+          Debug.Log("Animator stored globally.");
         }
-
+        else
+        {
+           animator = GlobalAnimator; // Reassign the Animator if it already exists
+        }
         // Get the SpriteRenderer component
         spriteRenderer = GetComponent<SpriteRenderer>();
 

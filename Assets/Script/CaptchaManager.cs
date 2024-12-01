@@ -20,6 +20,7 @@ public class CaptcahManager : MonoBehaviour
     void Start()
     {
         nextSceneName = "04 INS";
+        ericm1 = true;
 
         // Check and activate ericGameObject if not already activated
         if (!ericm1 && ericGameObject != null)
