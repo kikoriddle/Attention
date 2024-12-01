@@ -822,7 +822,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 7
   indentLevel: 0
-  musicClip: {fileID: 8300000, guid: 6600db16229284bc4a9486ddfd8855a7, type: 3}
+  musicClip: {fileID: 8300000, guid: 555f2ef0b64932e4ea6313300c7b98f5, type: 3}
   atTime: 0
   loop: 1
   fadeDuration: 1
@@ -965,8 +965,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nodeRect:
     serializedVersion: 2
-    x: 67
-    y: 59.33333
+    x: 65
+    y: 56.666664
     width: 113.33333
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
@@ -1015,8 +1015,10 @@ MonoBehaviour:
     y: -340
     width: 1114
     height: 859
-  selectedBlocks: []
-  selectedCommands: []
+  selectedBlocks:
+  - {fileID: 715163997}
+  selectedCommands:
+  - {fileID: 715163990}
   variables: []
   description: 
   stepPause: 0

@@ -25,6 +25,10 @@ public class BatteryInput : MonoBehaviour
     public GameObject rewardObject; // The game object to activate when all animations are played
     public GameObject animationObject; // GameObject with fade-out animation for the button
 
+    private GameObject battery1; // Dynamically found battery object 1
+    private GameObject battery2; // Dynamically found battery object 2
+    private GameObject battery3; // Dynamically found battery object 3
+
     private bool isTransitioning = false; // Prevent multiple transitions
     private bool isRewardObjectActivated = false; // Tracks if the reward object is activated
 
@@ -56,14 +60,19 @@ public class BatteryInput : MonoBehaviour
         if (newObjectC != null) newObjectC.SetActive(false);
 
         // Re-assign button listeners
-        if (button1 != null) button1.onClick.AddListener(() => PlayBatteryAnimation(animator1));
-        if (button2 != null) button2.onClick.AddListener(() => PlayBatteryAnimation(animator2));
-        if (button3 != null) button3.onClick.AddListener(() => PlayBatteryAnimation(animator3));
+        if (button1 != null) button1.onClick.AddListener(() => PlayBatteryAnimation(animator1, battery1));
+        if (button2 != null) button2.onClick.AddListener(() => PlayBatteryAnimation(animator2, battery2));
+        if (button3 != null) button3.onClick.AddListener(() => PlayBatteryAnimation(animator3, battery3));
         if (nextSceneButton != null) nextSceneButton.onClick.AddListener(SwitchScene);
     }
 
     void Update()
     {
+        // Dynamically find battery objects
+        battery1 = GameObject.Find("battery1");
+        battery2 = GameObject.Find("battery2");
+        battery3 = GameObject.Find("battery3");
+
         // Check if the fullyCollected boolean from the Battery script is true
         if (Battery.fullyCollected)
         {
@@ -117,26 +126,32 @@ public class BatteryInput : MonoBehaviour
         Debug.Log("New objects are now active, and original objects are turned off.");
     }
 
-    public void PlayBatteryAnimation(Animator animator)
+    public void PlayBatteryAnimation(Animator animator, GameObject battery)
     {
-        if (animator != null)
+        if (animator != null && battery != null)
         {
             animator.SetBool("canPlay", true); // Trigger the animation
             Debug.Log($"Playing animation for {animator.gameObject.name}");
-            StartCoroutine(DestroyBatteryAfterAnimation(animator));
+            StartCoroutine(DestroyBatteryAfterAnimation(battery, animator));
         }
         else
         {
-            Debug.LogError("Animator is null!");
+            Debug.LogError("Animator or Battery object is null!");
         }
     }
 
-    private IEnumerator DestroyBatteryAfterAnimation(Animator animator)
+    private IEnumerator DestroyBatteryAfterAnimation(GameObject battery, Animator animator)
     {
         if (animator != null)
         {
             AnimatorStateInfo animationState = animator.GetCurrentAnimatorStateInfo(0);
             yield return new WaitForSeconds(animationState.length); // Wait for the animation to complete
+        }
+
+        if (battery != null)
+        {
+            Destroy(battery); // Destroy the battery object
+            Debug.Log($"{battery.name} destroyed.");
         }
 
         animationsPlayedCount++;
